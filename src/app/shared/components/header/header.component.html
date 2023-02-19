@@ -1,0 +1,51 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<p>
+    <mat-toolbar color="primary" >
+        <mat-toolbar-row class="content">
+
+            <a [routerLink]="['/']"><img src="assets/images/logo.png" alt="logo.png" width="50" height="50"></a>
+
+            <span class="title">epsilon</span>
+
+            <form action="">
+                <div class="Icon-inside">
+                    <input type="text">
+                    <i class="fa fa-search fa-lg fa-fw" aria-hidden="true"></i>
+                  </div>
+            </form>
+
+            <button mat-icon-button class="btn-icon">
+                <mat-icon class="icon-display">favorite</mat-icon>
+            </button>
+            <button mat-icon-button class="btn-icon">
+                <mat-icon class="icon-display">shopping_cart</mat-icon>
+            </button>
+
+            <div class="usuario" *ngIf="usuarioLogueado == null">
+                <button mat-icon-button>
+                    <mat-icon class="icon-display2">account_circle</mat-icon>
+                </button>
+
+                <a [routerLink]="['/login']" class="sesion"><span>Iniciar sesión</span></a>
+                <span style="font-size: 18px;">|</span>
+                <a [routerLink]="['/registro']" class="sesion"><span>Registrarse</span></a>
+            </div>
+            <div class="usuario" *ngIf="usuarioLogueado != null">
+                <button mat-icon-button [matMenuTriggerFor]="menu">
+                    <mat-icon class="icon-display">account_circle</mat-icon> // TODO: Imagen del usuario
+                    <span>Usuario</span>
+                </button>
+            </div>
+            
+        </mat-toolbar-row>
+    </mat-toolbar>
+</p>
+
+<mat-menu #menu="matMenu" class="menu" xPosition="before">
+    <button mat-menu-item>Crear anuncio</button>
+    <button mat-menu-item>Ventas</button>
+    <button mat-menu-item>Pedidos</button>
+    <button mat-menu-item>Favoritos</button>
+    <button mat-menu-item>Cerrar Sesión</button>
+</mat-menu>

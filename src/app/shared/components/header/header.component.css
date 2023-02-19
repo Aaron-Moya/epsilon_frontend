@@ -1,0 +1,106 @@
+.title {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-left: 5px;
+}
+
+.mat-toolbar {
+    min-height: 80px !important;
+    height: 80px !important;
+}
+
+.mat-toolbar-row {
+    min-height: 80px !important;
+    height: 80px !important;
+}
+
+.content {
+    display: flex;
+    justify-content: center;
+}
+
+form {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+input {
+    align-items: center;
+    border: 1px solid white;
+    font-weight: 800;
+    font-size: 1rem;
+    color: #fff;
+    padding: 0 10px;
+    background: rgba(0, 0, 0, 0);
+    width: 400px;
+    min-height: 50px;
+    padding-left: 60px;
+}
+
+.Icon-inside {
+    position: relative;
+}
+
+.Icon-inside i {
+    position: absolute;
+    left: 0;
+    top: 5px;
+    padding: 10px 10px;
+    color: white;
+}
+
+.btn-icon {
+    margin-right: 10px;
+}
+
+.icon-display {
+    transform: scale(1.2);
+    transition: all 300ms;
+}
+
+.icon-display:hover {
+    color: yellow !important;
+}
+
+.icon-display2 {
+    transform: scale(1.2);
+}
+
+.usuario {
+    margin-left: 10px;
+}
+
+.usuario span {
+    margin-left: 10px;
+    font-size: 1.25rem;
+}
+
+.sesion {
+    color: white;
+    text-decoration: none;
+}
+
+.sesion span {
+    font-size: 14px;
+}
+
+.sesion:hover {
+    color: yellow;
+}
+
+::ng-deep .menu {
+    width: 200px;
+}
+
+::ng-deep .mat-form-field-flex>.mat-form-field-infix {
+    padding: 0.4em 0px !important;
+}
+
+::ng-deep .mat-form-field-label-wrapper {
+    top: -1.5em;
+}
+
+::ng-deep .mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
+    transform: translateY(-1.1em) scale(.75);
+    width: 133.33333%;
+}
