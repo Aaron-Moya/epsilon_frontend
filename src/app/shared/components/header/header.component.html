@@ -33,7 +33,8 @@
             </div>
             <div class="usuario" *ngIf="usuarioLogueado != null">
                 <button mat-icon-button [matMenuTriggerFor]="menu">
-                    <mat-icon class="icon-display">account_circle</mat-icon> // TODO: Imagen del usuario
+                    <img [src]="[usuarioLogueado.avatar]" [alt]="[usuarioLogueado.avatar]" width="30" height="30">
+                    <!-- <mat-icon class="icon-display">account_circle</mat-icon> Imagen del usuario -->
                     <span>Usuario</span>
                 </button>
             </div>
@@ -47,5 +48,5 @@
     <button mat-menu-item>Ventas</button>
     <button mat-menu-item>Pedidos</button>
     <button mat-menu-item>Favoritos</button>
-    <button mat-menu-item>Cerrar Sesión</button>
+    <button mat-menu-item (click)="cerrarSesion()">Cerrar Sesión</button>
 </mat-menu>
