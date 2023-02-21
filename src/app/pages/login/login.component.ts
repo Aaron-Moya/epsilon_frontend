@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
       const email = this.form.get<string>('email')?.value;
       const password = this.form.get<string>('passwd')?.value;
 
-      this.usuarioService.obtenerEmpleadoLogin(email, password)
+      this.usuarioService.obtenerUsuarioLogin(email, password)
       .pipe(catchError(() => of(null)))
         .subscribe(dato => {
           if (dato != null) {

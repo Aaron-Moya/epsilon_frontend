@@ -1,0 +1,36 @@
+<mat-card>
+    <mat-card-title>Registrarse</mat-card-title>
+    <mat-card-content>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <p>
+                <mat-form-field>
+                    <input type="text" matInput placeholder="Usuario" formControlName="usuario" required>
+                </mat-form-field>
+            </p>
+
+            <p>
+                <mat-form-field>
+                    <input type="email" matInput placeholder="Email" formControlName="email" required>
+                </mat-form-field>
+            </p>
+
+            <p>
+                <mat-form-field>
+                    <input type="password" matInput placeholder="Contraseña" formControlName="passwd" required>
+                </mat-form-field>
+            </p>
+
+            <div class="container">
+                <div class="button-wrap">
+                  <label class="button" for="upload">Subir avatar</label>
+                  <input id="upload" type="file" accept="image/png, image/jpg, image/jpeg" (change)="onFileSelected($event)">
+                </div>
+            </div>
+
+            <div class="button">
+                <button type="submit" mat-button>Registrarse</button>
+            </div>
+
+        </form>
+    </mat-card-content>
+</mat-card>
