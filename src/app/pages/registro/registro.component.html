@@ -4,20 +4,32 @@
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
             <p>
                 <mat-form-field>
-                    <input type="text" matInput placeholder="Usuario" formControlName="usuario" required>
+                    <input type="text" matInput placeholder="Usuario" formControlName="usuario" minLength="4" maxlength="18" required>
                 </mat-form-field>
+                <br/>
+                <span *ngIf="this.form.get('usuario')?.errors?.['minlength']" style="color: red;">
+                    El usuario tiene que tener al menos 4 caracteres
+                </span>
             </p>
 
             <p>
                 <mat-form-field>
-                    <input type="email" matInput placeholder="Email" formControlName="email" required>
+                    <input name="email" type="email" ngModel email matInput placeholder="Email" formControlName="email" maxlength="30" required>
                 </mat-form-field>
+                <br/>
+                <span *ngIf="this.form.get('email')?.errors?.['email']" style="color: red;">
+                    El email no tiene el formato correcto
+                </span>
             </p>
-
+            
             <p>
                 <mat-form-field>
-                    <input type="password" matInput placeholder="Contraseña" formControlName="passwd" required>
+                    <input type="password" matInput placeholder="Contraseña" formControlName="passwd" maxlength="20" required>
                 </mat-form-field>
+                <br/>
+                <span *ngIf="this.form.get('passwd')?.errors?.['minlength']" style="color: red;">
+                    La contraseña tiene que tener al menos 4 caracteres
+                </span>
             </p>
 
             <div class="container">

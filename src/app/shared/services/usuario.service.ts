@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Usuarios } from '../interfaces/usuarios';
-import { UsuarioCrear } from 'src/app/shared/interfaces/crearUsuario';
 
 @Injectable({
   providedIn: 'root'
@@ -19,11 +18,14 @@ export class UsuarioService {
     return this.httpClient.get<Usuarios>(`${this.baseURL + "/id/" + id}`);
   }
 
+  obtenerUsuarioPorCorreo(correo: string): Observable<Usuarios> {
+    return this.httpClient.get<Usuarios>(`${this.baseURL + "/correo/" + correo}`);
+  }
+
   obtenerUsuarioLogin(correo: string, password: string): Observable<Usuarios> {
     return this.httpClient.get<Usuarios>(`${this.baseURL + "/login"}`, {
       params: { correo: correo, password: password }
-    }
-    );
+    });
   }
 
   registrarUsuario(formData: FormData): Observable<Object> {
