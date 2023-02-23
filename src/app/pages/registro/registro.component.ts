@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsuarioCrear } from 'src/app/shared/interfaces/crearUsuario';
+import { EnviarCorreoService } from 'src/app/shared/services/enviar-correo.service';
 import { UsuarioService } from 'src/app/shared/services/usuario.service';
 import Swal from 'sweetalert2';
 
@@ -24,7 +25,7 @@ export class RegistroComponent {
 
   avatar: any = null;
 
-  constructor(private usuarioService: UsuarioService, private router: Router) { }
+  constructor(private usuarioService: UsuarioService, private enviarCorreo: EnviarCorreoService, private router: Router) { }
 
   onFileSelected(event: Event) {
     const target = event.target as HTMLInputElement;
@@ -51,7 +52,7 @@ export class RegistroComponent {
       })
     },err => {
       if (err.status == 404) { // No existe ningún usuario con ese correo
-        this.registrar();
+        this.registrar(usuario.correo);
       }
       else {
         Swal.fire({
@@ -62,12 +63,13 @@ export class RegistroComponent {
     });
   }
 
-  registrar(): void {
+  registrar(correoUsuario: string): void {
     this.usuarioService.registrarUsuario(this.formData).subscribe(data => {
       Swal.fire({
         icon: 'success',
         title: '¡Te has registrado correctamente!',
       });
+      this.enviarCorreo.enviarCorreoRegistro(correoUsuario);
       this.router.navigate(['/login']);
     },err => {
       Swal.fire({
