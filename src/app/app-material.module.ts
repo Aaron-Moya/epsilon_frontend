@@ -8,9 +8,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 @NgModule({
-    exports: [MatToolbarModule, MatIconModule, MatCardModule, MatButtonModule, 
+    exports: [MatToolbarModule, MatIconModule, MatCardModule, MatButtonModule, MatSidenavModule,
                 MatFormFieldModule, MatRadioModule, MatInputModule, MatSelectModule, MatMenuModule]
 })
 
