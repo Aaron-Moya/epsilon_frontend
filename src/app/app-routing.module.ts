@@ -2,8 +2,10 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
+  { path: '', loadChildren: () => import('./pages/inicio/inicio.module').then(m => m.InicioModule) },
   { path: 'login', loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule) },
-  { path: 'registro', loadChildren: () => import('./pages/registro/registro.module').then(m => m.RegistroModule) }
+  { path: 'registro', loadChildren: () => import('./pages/registro/registro.module').then(m => m.RegistroModule) },
+  { path: '**', redirectTo: '', pathMatch: 'full' }
 ];
 
 @NgModule({

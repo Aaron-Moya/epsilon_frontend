@@ -4,8 +4,12 @@
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
             <p>
                 <mat-form-field>
-                    <input type="text" matInput placeholder="Email" formControlName="email" required>
+                    <input type="email" ngModel email matInput placeholder="Email" formControlName="email" required>
                 </mat-form-field>
+                <br/>
+                <span *ngIf="this.form.get('email')?.errors?.['email']" style="color: red;">
+                    El email no tiene el formato correcto
+                </span>
             </p>
 
             <p>

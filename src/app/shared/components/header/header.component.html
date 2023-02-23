@@ -33,7 +33,7 @@
             </div>
             <div class="usuario" *ngIf="usuarioLogueado != null">
                 <button mat-icon-button [matMenuTriggerFor]="menu">
-                    <img [src]="[usuarioLogueado.avatar]" [alt]="[usuarioLogueado.avatar]" width="30" height="30">
+                    <img [src]="[usuarioLogueado.avatar]" [alt]="[usuarioLogueado.avatar]" class="avatar">
                     <span>{{ usuarioLogueado.usuario }}</span>
                 </button>
             </div>

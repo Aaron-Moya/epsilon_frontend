@@ -1,0 +1,22 @@
+li {
+    display: inline;
+    padding: 0 20px;
+    margin-right: 5px;
+    margin-left: 5px;
+    font-size: 18px;
+    font-weight: 400;
+    align-items: stretch;
+    
+}
+
+.categorias {
+    margin-top: -12px;
+    background-color: #441497;
+    color: white;
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    width: 100%;
+}
