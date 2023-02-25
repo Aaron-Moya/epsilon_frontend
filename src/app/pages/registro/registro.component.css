@@ -1,82 +1,83 @@
 :host {
-    display: flex;
-    justify-content: center;
-    margin: 100px 0px;
-  }
+  display: flex;
+  justify-content: center;
+  margin: 100px 0px;
+}
 
-  .mat-form-field {
-    width: 100%;
-    min-width: 350px;
-    max-width: 350px;
-    
-  }
+.mat-form-field {
+  width: 100%;
+  min-width: 350px;
+  max-width: 350px;
 
-  mat-card {
-    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75) !important;
--moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75) !important;
-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75) !important;
-    background-color: rgba(245, 245, 245, 0.792);
-    width: 500px;
-    max-width: 500px;
-    padding: 30px;
-  }
-  mat-card-title,
-  mat-card-content {
-    display: flex;
-    justify-content: center;
-  }
+}
 
-  .error {
-    padding: 16px;
-    width: 300px;
-    color: white;
-    background-color: red;
-  }
+mat-card {
+  -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75) !important;
+  -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75) !important;
+  box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75) !important;
+  background-color: rgba(245, 245, 245, 0.792);
+  width: 500px;
+  max-width: 500px;
+  padding: 30px;
+}
 
-  .button {
-    display: flex;
-    justify-content: flex-end;
-    flex-wrap: wrap;
-    width: 100%;
-  }
-  
-  .button button {
-    border: 2px solid black;
-    background-color: yellow;
-    margin-top: 20px;
-    font-weight: 800;
-    width: 100%;
-  }
+mat-card-title,
+mat-card-content {
+  display: flex;
+  justify-content: center;
+}
 
-  .container {
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
-    width: 100%;
-  }
+.error {
+  padding: 16px;
+  width: 300px;
+  color: white;
+  background-color: red;
+}
 
-  input[type="file"] {
-    position: absolute;
-    z-index: -1;
-    top: 10px;
-    left: 15px;
-    font-size: 16px;
-    font-weight: bold;
-    color: black;
-  }
+.button {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  width: 100%;
+}
 
-  .button-wrap {
-    position: relative;
-  }
+.button button {
+  border: 2px solid black;
+  background-color: yellow;
+  margin-top: 20px;
+  font-weight: 800;
+  width: 100%;
+}
 
-  .container .button {
-    display: inline-block;
-    text-align: center;
-    padding: 8px 7px;
-    cursor: pointer;
-    border-radius: 5px;
-    background-color: #673ab7;
-    font-size: 13px;
-    font-weight: bold;
-    color: #fff;
-  }
+.container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+input[type="file"] {
+  position: absolute;
+  z-index: -1;
+  top: 10px;
+  left: 15px;
+  font-size: 16px;
+  font-weight: bold;
+  color: black;
+}
+
+.button-wrap {
+  position: relative;
+}
+
+.container .button {
+  display: inline-block;
+  text-align: center;
+  padding: 8px 7px;
+  cursor: pointer;
+  border-radius: 5px;
+  background-color: #673ab7;
+  font-size: 13px;
+  font-weight: bold;
+  color: #fff;
+}

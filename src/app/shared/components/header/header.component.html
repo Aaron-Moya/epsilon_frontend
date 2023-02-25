@@ -43,9 +43,12 @@
 </p>
 
 <mat-menu #menu="matMenu" class="menu" xPosition="before">
-    <button mat-menu-item>Crear anuncio</button>
-    <button mat-menu-item>Ventas</button>
+    <button mat-menu-item>Tablero</button>
+    <button mat-menu-item>Biblioteca</button>
     <button mat-menu-item>Pedidos</button>
-    <button mat-menu-item>Favoritos</button>
+    <button mat-menu-item>Perfil</button>
+    <button mat-menu-item>Ventas</button>
+    <button mat-menu-item>Anuncios</button>
+    <button mat-menu-item [routerLink]="['/me']">Crear anuncio</button>
     <button mat-menu-item (click)="cerrarSesion()">Cerrar Sesión</button>
 </mat-menu>

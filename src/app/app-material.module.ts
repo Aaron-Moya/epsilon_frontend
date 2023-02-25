@@ -9,9 +9,10 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
-    exports: [MatToolbarModule, MatIconModule, MatCardModule, MatButtonModule, MatSidenavModule,
+    exports: [MatToolbarModule, MatIconModule, MatCardModule, MatButtonModule, MatSidenavModule, MatExpansionModule,
                 MatFormFieldModule, MatRadioModule, MatInputModule, MatSelectModule, MatMenuModule]
 })
 

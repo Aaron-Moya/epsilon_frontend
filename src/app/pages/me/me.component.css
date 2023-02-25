@@ -19,6 +19,7 @@ ul {
     height: 100%;
     overflow: auto;
     background-color: #673ab7;
+    min-width: 180px;
 }
 
 li a {
@@ -29,6 +30,7 @@ li a {
     font-size: 16px;
     font-weight: 500;
     font-family: Roboto, "Helvetica Neue", sans-serif;
+    cursor: pointer;
 }
 
 li a.active {
