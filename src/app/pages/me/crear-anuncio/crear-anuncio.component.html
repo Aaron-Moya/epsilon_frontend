@@ -1,10 +1,10 @@
 <mat-card>
     <mat-card-title>Crear anuncio</mat-card-title>
     <mat-card-content>
-        <form>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
             <p>
                 <mat-form-field>
-                    <input type="text" ngModel email matInput placeholder="Nombre del producto" formControlName="nombre" required>
+                    <input type="text" matInput placeholder="Nombre del producto" formControlName="nombre" required>
                 </mat-form-field>
                 <br/>
             </p>
@@ -15,17 +15,17 @@
                         cdkTextareaAutosize
                         #autosize="cdkTextareaAutosize"
                         cdkAutosizeMinRows="1"
-                        cdkAutosizeMaxRows="8" maxlength="700"></textarea>
+                        cdkAutosizeMaxRows="8" maxlength="700" formControlName="descripcion" required></textarea>
                 </mat-form-field>
             </p>
 
             <p>
                 <mat-form-field>
                     <mat-label>Selecciona una categoría</mat-label>
-                    <mat-select [disableOptionCentering]="true" required>
-                      <mat-option value="option1">Option 1</mat-option>
-                      <mat-option value="option2">Option 2</mat-option>
-                      <mat-option value="option3">Option 3</mat-option>
+                    <mat-select [disableOptionCentering]="true" required formControlName="categoria">
+                        <mat-option *ngFor="let categoria of categorias; index as i;" 
+                            value="{{ categoria.id }}">{{ categoria.nombre }}
+                        </mat-option>
                     </mat-select>
                 </mat-form-field>
             </p>
@@ -33,24 +33,24 @@
             <p>
                 <mat-form-field>
                     <mat-label>Estado</mat-label>
-                    <mat-select [disableOptionCentering]="true" required>
-                      <mat-option value="option1">Nuevo</mat-option>
-                      <mat-option value="option2">Como nuevo</mat-option>
-                      <mat-option value="option3">Usado</mat-option>
+                    <mat-select [disableOptionCentering]="true" required formControlName="estado"> 
+                      <mat-option value="Nuevo">Nuevo</mat-option>
+                      <mat-option value="Como nuevo">Como nuevo</mat-option>
+                      <mat-option value="Usado">Usado</mat-option>
                     </mat-select>
                 </mat-form-field>
             </p>
 
             <p>
                 <mat-form-field>
-                    <input type="number" ngModel number matInput placeholder="Precio" formControlName="precio" min="0.00" max="10000.00" step="0.01" required>
+                    <input type="number" ngModel number matInput placeholder="Precio" formControlName="precio" min="0.00" max="10000.00" step="0.01" required formControlName="precio">
                 </mat-form-field>
                 <br/>
             </p>
 
             <p>
                 <mat-form-field>
-                    <input type="number" matInput placeholder="Stock" formControlName="stock" min="1" max="10000" required>
+                    <input type="number" matInput placeholder="Stock" formControlName="stock" min="1" max="10000" required formControlName="stock">
                 </mat-form-field>
                 <br/>
             </p>
@@ -58,7 +58,7 @@
             <div class="container">
                 <div class="button-wrap">
                   <label class="button" for="upload">Subir avatar</label>
-                  <input id="upload" type="file" accept="image/png, image/jpg, image/jpeg" (change)="onFileSelected($event)">
+                  <input id="upload" type="file" accept="image/png, image/jpg, image/jpeg" (change)="onFileSelected($event)" required>
                 </div>
             </div>
 

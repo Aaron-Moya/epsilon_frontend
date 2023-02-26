@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { UsuarioCrear } from 'src/app/shared/interfaces/crearUsuario';
 import { EnviarCorreoService } from 'src/app/shared/services/enviar-correo.service';
 import { UsuarioService } from 'src/app/shared/services/usuario.service';
-import Swal from 'sweetalert2';
+import Swal from   'sweetalert2';
 
 @Component({
   selector: 'app-registro',

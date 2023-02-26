@@ -6,6 +6,7 @@ import { MeComponent } from './me.component';
 import { MaterialModule } from 'src/app/app-material.module';
 import { CrearAnuncioComponent } from './crear-anuncio/crear-anuncio.component';
 import { MisAnunciosComponent } from './mis-anuncios/mis-anuncios.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { MisAnunciosComponent } from './mis-anuncios/mis-anuncios.component';
     CommonModule,
     MeRoutingModule,
     MaterialModule,
+    ReactiveFormsModule
   ]
 })
 export class MeModule { }
