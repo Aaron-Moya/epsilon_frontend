@@ -9,4 +9,5 @@ export class Usuarios {
     fechaCreacion!: Date;
     avatar!: string;
     direccion!: Direcciones;
+    accessToken!: string;
 }

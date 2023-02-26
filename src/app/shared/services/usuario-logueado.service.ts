@@ -15,6 +15,7 @@ export class UsuarioLogueadoService {
   updateUsuarioLogueado(usuario: Usuarios) {
     this.usuarioLogueadoSubject.next(usuario);
     localStorage.setItem('idUsuarioLogueado', JSON.stringify(usuario.id));
+    localStorage.setItem('token', usuario.accessToken);
   }
 
   cerrarSesion() {

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Usuarios } from '../interfaces/usuarios';
 
@@ -11,19 +11,22 @@ export class UsuarioService {
 
   // Esta URL obtiene el listado de todos los usuarios en el backend
   private baseURL = "http://localhost:8080/api/usuarios";
+  private authURL = "http://localhost:8080/auth/login";
 
   constructor(private httpClient: HttpClient) { }
 
   obtenerUsuarioPorId(id: number): Observable<Usuarios> {
-    return this.httpClient.get<Usuarios>(`${this.baseURL + "/id/" + id}`);
+    const headers: HttpHeaders = new HttpHeaders().set('Authorization',  `Bearer ${localStorage.getItem('token')}`);
+    return this.httpClient.get<Usuarios>(`${this.baseURL + "/id/" + id}`, { headers });
   }
 
   obtenerUsuarioPorCorreo(correo: string): Observable<Usuarios> {
-    return this.httpClient.get<Usuarios>(`${this.baseURL + "/correo/" + correo}`);
+    const headers: HttpHeaders = new HttpHeaders().set('Authorization',  `Bearer ${localStorage.getItem('token')}`);
+    return this.httpClient.get<Usuarios>(`${this.baseURL + "/correo/" + correo}`, { headers });
   }
 
   obtenerUsuarioLogin(correo: string, password: string): Observable<Usuarios> {
-    return this.httpClient.get<Usuarios>(`${this.baseURL + "/login"}`, {
+    return this.httpClient.get<Usuarios>(`${this.authURL}`, {
       params: { correo: correo, password: password }
     });
   }

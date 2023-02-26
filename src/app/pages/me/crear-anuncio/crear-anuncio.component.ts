@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Categorias } from 'src/app/shared/interfaces/categorias';
 import { Productos } from 'src/app/shared/interfaces/productos';
 import { CategoriaService } from 'src/app/shared/services/categoria.service';
@@ -18,7 +19,7 @@ export class CrearAnuncioComponent implements OnInit {
       Validators.minLength(3)
     ]),
     descripcion: new FormControl('', [
-      Validators.minLength(50)
+      Validators.minLength(30)
     ]),
     estado: new FormControl(''),
     categoria: new FormControl(''),
@@ -28,7 +29,7 @@ export class CrearAnuncioComponent implements OnInit {
   categorias!: Categorias[];
   imagen: any = null;
 
-  constructor(private categoriaService: CategoriaService, private productoService: ProductoService) { }
+  constructor(private categoriaService: CategoriaService, private productoService: ProductoService, private router: Router) { }
 
   ngOnInit(): void {
      this.categoriaService.obtenerCategorias().subscribe(categorias => {
@@ -44,37 +45,33 @@ export class CrearAnuncioComponent implements OnInit {
   }
 
   onSubmit(): void {
-    const producto = new Productos()
-    producto.nombre = this.form.get<string>('nombre')?.value;
-    producto.descripcion = this.form.get<string>('descripcion')?.value;
-    producto.precio = this.form.get<any>('precio')?.value;
-    producto.stock = this.form.get<any>('stock')?.value;
-    producto.estado = this.form.get<string>('estado')?.value;
-    this.categoriaService.obtenerCategoriaPorId(this.form.value.categoria).subscribe(data => {
-        producto.categorias = data;
+    if (this.form.valid) {
+      const producto = new Productos()
+      producto.nombre = this.form.get<string>('nombre')?.value;
+      producto.descripcion = this.form.get<string>('descripcion')?.value;
+      producto.precio = this.form.get<any>('precio')?.value;
+      producto.stock = this.form.get<any>('stock')?.value;
+      producto.estado = this.form.get<string>('estado')?.value;
+      producto.categorias = this.categorias.find(c => c.id == this.form.value.categoria) as Categorias;
       console.log(producto.categorias);
 
-    });
-    const json = JSON.stringify(producto);
+      const json = JSON.stringify(producto);
 
-    console.log(producto);
-    console.log(producto.categorias);
-    console.log(json);
+      this.formData.append('file', this.imagen);
+      this.formData.append('producto', new Blob([json], { type: 'application/json' }));
 
-    this.formData.append('file', this.imagen);
-    this.formData.append('producto', new Blob([json], { type: 'application/json' }));
-
-    this.productoService.crearAnuncio(this.formData).subscribe(data => {
-      Swal.fire({
-        icon: 'success',
-        title: '¡Anuncio creado correctamente!',
+      this.productoService.crearAnuncio(this.formData).subscribe(data => {
+        Swal.fire({
+          icon: 'success',
+          title: '¡Anuncio creado correctamente!',
+        });
+        this.router.navigate(['/']);
+      },err => {
+        Swal.fire({
+          icon: 'error',
+          title: '¡Error al crear el anuncio!',
+        })
       });
-      // this.router.navigate(['/login']);
-    },err => {
-      Swal.fire({
-        icon: 'error',
-        title: '¡Error al crear el anuncio!',
-      })
-    });
+    }
   }
 }

@@ -31,8 +31,9 @@ export class LoginComponent implements OnInit {
       this.usuarioService.obtenerUsuarioLogin(email, password)
       .pipe(catchError(() => of(null)))
         .subscribe(dato => {
+          console.log(dato);
           if (dato != null) {
-            // alert("ok"); GUARDAR EL USUARIO Y IR A LA PÁGINA RAIZ
+            console.log(dato);
             this.usuarioLogueadoService.updateUsuarioLogueado(dato);
             this.router.navigate(['/']);
           }
