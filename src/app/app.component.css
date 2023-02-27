@@ -1,0 +1,15 @@
+::ng-deep .mat-paginator-outer-container {
+    background-color: #1d1c1c;
+    color: white;
+    border-radius: 30px;
+    border: 5px solid #441497;
+}
+
+::ng-deep .mat-paginator-range-actions {
+    background-color: #441497;
+    border-radius: 30px;
+}
+
+::ng-deep .mat-paginator {
+    background: none;
+}

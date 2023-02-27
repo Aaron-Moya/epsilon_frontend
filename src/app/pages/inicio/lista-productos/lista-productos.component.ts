@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { PageEvent } from '@angular/material/paginator';
+import { Productos } from 'src/app/shared/interfaces/productos';
 import { ProductoService } from 'src/app/shared/services/producto.service';
 
 @Component({
@@ -8,18 +10,32 @@ import { ProductoService } from 'src/app/shared/services/producto.service';
 })
 export class ListaProductosComponent implements OnInit {
 
-  data!: any[];
-  length = 0;
-  pageSize = 5;
-  pageIndex = 0;
+  productos!: Productos[];
+  page = 0;
+  size = 5;
+  totalElements = 0;
 
   constructor(private productoService: ProductoService) { }
 
   ngOnInit(): void {
-    this.productoService.obtenerProductos(this.pageIndex, this.pageSize).subscribe((data: any )=> {
-      this.data = data.content;
-      // console.log(this.data);
+    this.productoService.obtenerProductos(this.page, this.size).subscribe((data: any )=> {
+      this.productos = data.content;
+      console.log(this.productos);
     })
+  }
+
+  getProductos(): void {
+    this.productoService.obtenerProductos(this.page, this.size).subscribe((page: any) => {
+      this.productos = page.content;
+      this.totalElements = page.totalElements;
+    });
+  }
+
+  onPageChange(event: PageEvent): void {
+    this.page = event.pageIndex;
+    this.size = event.pageSize;
+    this.getProductos();
+    console.log(this.productos);
   }
 
 }

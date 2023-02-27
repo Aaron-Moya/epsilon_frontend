@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Productos } from '../interfaces/productos';
+import { Page } from '../interfaces/page';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +15,8 @@ export class ProductoService {
 
   constructor(private httpClient: HttpClient) { }
 
-  obtenerProductos(page: number, size: number): Observable<Productos[]> {
-    return this.httpClient.get<Productos[]>(`${this.baseURL + "?page=" + page + "&size=" + size}`);
+  obtenerProductos(page: number, size: number): any {
+    return this.httpClient.get<Page<Productos>>(`${this.baseURL + "?page=" + page + "&size=" + size}`);
   };
 
   crearAnuncio(formData: FormData): Observable<Object> {
