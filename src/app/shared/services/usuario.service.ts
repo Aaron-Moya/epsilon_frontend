@@ -21,8 +21,8 @@ export class UsuarioService {
   }
 
   obtenerUsuarioPorCorreo(correo: string): Observable<Usuarios> {
-    const headers: HttpHeaders = new HttpHeaders().set('Authorization',  `Bearer ${localStorage.getItem('token')}`);
-    return this.httpClient.get<Usuarios>(`${this.baseURL + "/correo/" + correo}`, { headers });
+    // const headers: HttpHeaders = new HttpHeaders().set('Authorization',  `Bearer ${localStorage.getItem('token')}`);
+    return this.httpClient.get<Usuarios>(`${this.baseURL + "/correo/" + correo}`);
   }
 
   obtenerUsuarioLogin(correo: string, password: string): Observable<Usuarios> {
@@ -32,6 +32,6 @@ export class UsuarioService {
   }
 
   registrarUsuario(formData: FormData): Observable<Object> {
-    return this.httpClient.post(`${this.baseURL}`, formData);
+    return this.httpClient.post(`${this.baseURL + "/registro"}`, formData);
   };
 }

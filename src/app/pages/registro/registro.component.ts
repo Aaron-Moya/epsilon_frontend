@@ -42,7 +42,8 @@ export class RegistroComponent {
 
     const json = JSON.stringify(usuario);
 
-    this.formData.append('file', this.avatar);
+    if (this.avatar != null)
+      this.formData.append('file', this.avatar);
     this.formData.append('usuario', new Blob([json], { type: 'application/json' }));
 
     this.usuarioService.obtenerUsuarioPorCorreo(usuario.correo).subscribe(data => {
