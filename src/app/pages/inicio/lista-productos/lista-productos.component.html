@@ -25,7 +25,8 @@
 </section>
 
 <div class="centrado">
-    <mat-paginator #paginator [length]="totalElements" [pageSize]="size" (page)="onPageChange($event)"
+    <mat-paginator #paginator [length]="totalElements" [pageSize]="size" 
+        (page)="onPageChange($event)"
         [showFirstLastButtons]="true" [hidePageSize]="true">
     </mat-paginator>
 </div>

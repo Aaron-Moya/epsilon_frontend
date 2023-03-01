@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Navigation } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-me',
@@ -6,16 +8,34 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./me.component.css']
 })
 export class MeComponent implements OnInit {
+
+  opcionMenu!: any;
+
   tableroSeleccionado = false;
   bibliotecaSeleccionado = false;
   pedidosSeleccionado = false;
   perfilSeleccionado = false;
+  ventasSeleccionado = false;
   misAnunciosSeleccionado = false;
   crearAnuncioSeleccionado = false;
 
-  constructor() { }
+  constructor(private router: Router) { 
+    const state = this.router.getCurrentNavigation()?.extras.state;
+    if (state != undefined) this.opcionMenu = state['opcionMenu'];
+  }
 
   ngOnInit(): void {
+    this.seleccionarOpcionMenu();
+  }
+
+  seleccionarOpcionMenu(): void {
+    if (this.opcionMenu == "tablero") this.seleccionarTablero();
+    if (this.opcionMenu == "biblioteca") this.seleccionarBiblioteca();
+    if (this.opcionMenu == "pedidos") this.seleccionarPedidos();
+    if (this.opcionMenu == "perfil") this.seleccionarPerfil();
+    if (this.opcionMenu == "ventas") this.seleccionarVentas();
+    if (this.opcionMenu == "anuncios") this.seleccionarMisAnuncios();
+    if (this.opcionMenu == "crearAnuncio") this.seleccionarCrearAnuncio();
   }
 
   seleccionarTablero(): void {
@@ -24,6 +44,7 @@ export class MeComponent implements OnInit {
     this.crearAnuncioSeleccionado = false;
     this.bibliotecaSeleccionado = false;
     this.pedidosSeleccionado = false;
+    this.ventasSeleccionado = false;
     this.perfilSeleccionado = false;
   }
 
@@ -33,6 +54,7 @@ export class MeComponent implements OnInit {
     this.misAnunciosSeleccionado = false;
     this.crearAnuncioSeleccionado = false;
     this.pedidosSeleccionado = false;
+    this.ventasSeleccionado = false;
     this.perfilSeleccionado = false;
   }
 
@@ -43,10 +65,23 @@ export class MeComponent implements OnInit {
     this.misAnunciosSeleccionado = false;
     this.crearAnuncioSeleccionado = false;
     this.perfilSeleccionado = false;
+    this.ventasSeleccionado = false;
+
   }
 
   seleccionarPerfil(): void {
     this.perfilSeleccionado = true;
+    this.misAnunciosSeleccionado = false;
+    this.pedidosSeleccionado = false;
+    this.bibliotecaSeleccionado = false;
+    this.tableroSeleccionado = false;
+    this.ventasSeleccionado = false;
+    this.crearAnuncioSeleccionado = false;
+  }
+
+  seleccionarVentas(): void {
+    this.ventasSeleccionado = true;
+    this.perfilSeleccionado = false;
     this.misAnunciosSeleccionado = false;
     this.pedidosSeleccionado = false;
     this.bibliotecaSeleccionado = false;
@@ -57,6 +92,7 @@ export class MeComponent implements OnInit {
   seleccionarMisAnuncios(): void {
     this.misAnunciosSeleccionado = true;
     this.crearAnuncioSeleccionado = false;
+    this.ventasSeleccionado = false;
     this.tableroSeleccionado = false;
     this.bibliotecaSeleccionado = false;
     this.pedidosSeleccionado = false;
@@ -65,6 +101,7 @@ export class MeComponent implements OnInit {
 
   seleccionarCrearAnuncio(): void {
     this.crearAnuncioSeleccionado = true;
+    this.ventasSeleccionado = false;
     this.tableroSeleccionado = false;
     this.bibliotecaSeleccionado = false;
     this.pedidosSeleccionado = false;

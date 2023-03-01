@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnInit, SimpleChanges } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 import { Usuarios } from '../../interfaces/usuarios';
 import { UsuarioLogueadoService } from '../../services/usuario-logueado.service';
 import { UsuarioService } from '../../services/usuario.service';
@@ -25,6 +25,19 @@ export class HeaderComponent implements OnInit {
         });
       }
     })
+  }
+
+  clickMenuItem(opcion: string): void {
+    const extras: NavigationExtras = {
+      state: {
+        opcionMenu: opcion
+      }
+    };
+    if (opcion == "cerrarSesion") this.cerrarSesion();
+    else {
+      this.router.navigate(['/me'], extras);
+    }
+
   }
 
   cerrarSesion(): void {

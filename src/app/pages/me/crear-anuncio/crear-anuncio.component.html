@@ -7,6 +7,9 @@
                     <input type="text" matInput placeholder="Nombre del producto" formControlName="nombre" required>
                 </mat-form-field>
                 <br/>
+                <span *ngIf="this.form.get('nombre')?.errors?.['minlength']" style="color: red;">
+                    El nombre tiene que tener al menos 3 carácteres
+                </span>
             </p>
 
             <p>
@@ -17,6 +20,10 @@
                         cdkAutosizeMinRows="1"
                         cdkAutosizeMaxRows="8" maxlength="700" formControlName="descripcion" required></textarea>
                 </mat-form-field>
+                <br/>
+                <span *ngIf="this.form.get('descripcion')?.errors?.['minlength']" style="color: red;">
+                    La descripción tiene que tener al menos 30 carácteres
+                </span>
             </p>
 
             <p>

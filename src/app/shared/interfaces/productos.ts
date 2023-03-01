@@ -1,4 +1,5 @@
 import { Categorias } from "./categorias";
+import { Usuarios } from "./usuarios";
 
 export class Productos {
 
@@ -11,5 +12,5 @@ export class Productos {
     categorias!: Categorias;
     fechaCreacion!: Date;
     imagen!: string;
-
+    usuarios!: Usuarios;
 }

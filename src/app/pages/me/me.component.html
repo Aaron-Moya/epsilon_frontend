@@ -24,6 +24,12 @@
                 PERFIL
             </a>
         </li>
+        <li (click)="seleccionarVentas()">
+            <a [ngClass]="{ active: ventasSeleccionado }">
+                <mat-icon class="icon-display">shop</mat-icon>
+                VENTAS
+            </a>
+        </li>
         <li (click)="seleccionarMisAnuncios()">
             <a [ngClass]="{ active: misAnunciosSeleccionado }">
                 <mat-icon class="icon-display">loyalty</mat-icon>

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Categorias } from '../interfaces/categorias';
 
@@ -15,11 +15,13 @@ export class CategoriaService {
   constructor(private httpClient: HttpClient) { }
 
   obtenerCategoriaPorId(id: number): Observable<Categorias> {
-    return this.httpClient.get<Categorias>(`${this.baseURL + "/" + id}`);
+    const headers: HttpHeaders = new HttpHeaders().set('Authorization',  `Bearer ${localStorage.getItem('token')}`);
+    return this.httpClient.get<Categorias>(`${this.baseURL + "/" + id}`, {headers});
   }
 
   obtenerCategorias(): Observable<Categorias[]> {
-    return this.httpClient.get<Categorias[]>(`${this.baseURL}`);
+    const headers: HttpHeaders = new HttpHeaders().set('Authorization',  `Bearer ${localStorage.getItem('token')}`);
+    return this.httpClient.get<Categorias[]>(`${this.baseURL}`, {headers});
   }
 
 }

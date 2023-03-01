@@ -12,7 +12,7 @@ export class ListaProductosComponent implements OnInit {
 
   productos!: Productos[];
   page = 0;
-  size = 5;
+  size = 6;
   totalElements = 0;
 
   constructor(private productoService: ProductoService) { }
@@ -20,7 +20,7 @@ export class ListaProductosComponent implements OnInit {
   ngOnInit(): void {
     this.productoService.obtenerProductos(this.page, this.size).subscribe((data: any )=> {
       this.productos = data.content;
-      console.log(this.productos);
+      this.totalElements = data.totalElements;
     })
   }
 
@@ -35,7 +35,6 @@ export class ListaProductosComponent implements OnInit {
     this.page = event.pageIndex;
     this.size = event.pageSize;
     this.getProductos();
-    console.log(this.productos);
   }
 
 }
