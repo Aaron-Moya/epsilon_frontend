@@ -19,6 +19,10 @@ export class ProductoService {
     return this.httpClient.get<Page<Productos>>(`${this.baseURL + "?page=" + page + "&size=" + size}`);
   };
 
+  obtenerProductoPorId(id: number): Observable<Productos> {
+    return this.httpClient.get<Productos>(`${this.baseURL + "/id/" + id}`);
+  }
+
   crearAnuncio(formData: FormData): Observable<Object> {
     const headers: HttpHeaders = new HttpHeaders().set('Authorization',  `Bearer ${localStorage.getItem('token')}`);
     return this.httpClient.post(`${this.baseURL}`, formData, { headers });

@@ -1,0 +1,33 @@
+<div class="container">
+    <mat-card>
+        <mat-card-content>
+            <img [src]="producto.imagen" [alt]="producto.imagen" width="150" height="150">
+            <div class="datos">
+                <p class="nombre">{{ producto.nombre }}</p>
+                <p class="fechaPublicacion">Publicado el {{ producto.fechaCreacion }}</p>
+                <p class="estado">Estado: {{ producto.estado }}</p>
+                <p class="stock">Stock: {{ producto.stock }}</p>
+                <p class="precio">{{ producto.precio | currency }}</p>
+                <div class="botones">
+                    <button class="fav-button">
+                        <mat-icon>favorite</mat-icon>
+                    </button>
+                    <button class="cart-button">
+                        <mat-icon>add_shopping_cart</mat-icon>
+                    </button>
+                </div>
+            </div>
+
+        </mat-card-content>
+    </mat-card>
+</div>
+<div class="descripcion">
+    <mat-card>
+        <mat-card-title>Descripción del producto</mat-card-title>
+        <mat-card-content>
+            <p>
+                {{ producto.descripcion }}
+            </p>
+        </mat-card-content>
+    </mat-card>
+</div>
