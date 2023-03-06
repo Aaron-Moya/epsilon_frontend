@@ -27,6 +27,10 @@ export class HeaderComponent implements OnInit {
     })
   }
 
+  irAFavoritos() : void {
+    this.router.navigate(['/favoritos']);
+  }
+
   clickMenuItem(opcion: string): void {
     const extras: NavigationExtras = {
       state: {

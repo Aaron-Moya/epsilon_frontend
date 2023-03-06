@@ -14,7 +14,7 @@
                 <a [routerLink]="['/producto', producto.id]"><img [src]="producto.imagen" /></a>
             </div>
             <div class="text">{{ producto.precio | currency }}</div>
-            <button class="fav-button">
+            <button class="fav-button" (click)="addProductoFavorito(producto.id)">
                 <mat-icon>favorite</mat-icon>
             </button>
             <button class="cart-button">

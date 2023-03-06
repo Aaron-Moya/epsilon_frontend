@@ -7,6 +7,7 @@ const routes: Routes = [
   { path: 'registro', loadChildren: () => import('./pages/registro/registro.module').then(m => m.RegistroModule) },
   { path: 'me', loadChildren: () => import('./pages/me/me.module').then(m => m.MeModule) },
   { path: 'producto/:id', loadChildren: () => import('./pages/detalles-producto/detalles-producto.module').then(m => m.DetallesProductoModule) },
+  { path: 'favoritos', loadChildren: () => import('./pages/favoritos/favoritos.module').then(m => m.FavoritosModule) },
   { path: '**', redirectTo: '', pathMatch: 'full' }
 ];
 

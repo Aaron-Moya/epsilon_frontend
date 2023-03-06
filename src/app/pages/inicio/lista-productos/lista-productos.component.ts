@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { Productos } from 'src/app/shared/interfaces/productos';
 import { ProductoService } from 'src/app/shared/services/producto.service';
+import { UsuarioService } from 'src/app/shared/services/usuario.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'lista-productos',
@@ -15,7 +17,7 @@ export class ListaProductosComponent implements OnInit {
   size = 6;
   totalElements = 0;
 
-  constructor(private productoService: ProductoService) { }
+  constructor(private productoService: ProductoService, private usuarioService: UsuarioService) { }
 
   ngOnInit(): void {
     this.productoService.obtenerProductos(this.page, this.size).subscribe((data: any )=> {
@@ -35,6 +37,25 @@ export class ListaProductosComponent implements OnInit {
     this.page = event.pageIndex;
     this.size = event.pageSize;
     this.getProductos();
+  }
+
+  addProductoFavorito(idProducto: number): void {
+      const idUsuario = localStorage.getItem('idUsuarioLogueado');
+      if (idUsuario != null) {
+        this.usuarioService.addProductoFavorito(parseInt(idUsuario), idProducto).subscribe(data => {
+          Swal.fire({
+            icon: 'info',
+            title: '¡Producto añadido a favoritos!',
+          });
+          console.log(data);
+        }, err => {
+          console.log(err);
+          Swal.fire({
+            icon: 'error',
+            title: '¡Error al añadir el producto a favoritos!',
+          });
+        });
+      }
   }
 
 }

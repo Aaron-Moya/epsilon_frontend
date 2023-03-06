@@ -1,0 +1,11 @@
+<section class="product-list ">
+    <div class="product-container">
+        <div *ngFor="let producto of productos; index as i;" class="card">
+            <div class="title">{{ producto.nombre }}</div>
+            <div class="image">
+                <a [routerLink]="['/producto', producto.id]"><img [src]="producto.imagen" /></a>
+            </div>
+            <div class="text">{{ producto.precio | currency }}</div>
+        </div>
+    </div>
+</section>

@@ -10,7 +10,7 @@ import { ProductoService } from 'src/app/shared/services/producto.service';
 })
 export class DetallesProductoComponent implements OnInit {
 
-  producto!: Productos;
+  producto: Productos = new Productos();
 
   constructor(private productoService: ProductoService, private activatedRoute: ActivatedRoute) {}
 
@@ -19,7 +19,6 @@ export class DetallesProductoComponent implements OnInit {
       const idProducto = params['id'];
       this.productoService.obtenerProductoPorId(idProducto).subscribe(prod => {
         this.producto = prod;
-        console.log(this.producto);
       });
     });
 

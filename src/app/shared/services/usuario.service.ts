@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Usuarios } from '../interfaces/usuarios';
+import { Productos } from '../interfaces/productos';
 
 @Injectable({
   providedIn: 'root'
@@ -31,7 +32,28 @@ export class UsuarioService {
     });
   }
 
+  obtenerProductosFavoritos(idUsuario: number): Observable<Productos[]> {
+    const headers: HttpHeaders = new HttpHeaders().set('Authorization',  `Bearer ${localStorage.getItem('token')}`);
+    return this.httpClient.get<Productos[]>(`${this.baseURL + "/favoritos"}`, {
+      params: {idUsuario: idUsuario},
+      headers : headers
+    });
+  }
+
   registrarUsuario(formData: FormData): Observable<Object> {
     return this.httpClient.post(`${this.baseURL + "/registro"}`, formData);
   };
+
+  addProductoFavorito(idUsuario: number, idProducto: number): Observable<Object> {
+    const params = {
+      idUsuario: idUsuario,
+      idProducto: idProducto,
+    };
+    const options = {
+      params: new HttpParams().set('idUsuario', params.idUsuario).set('idProducto', params.idProducto),
+      headers: new HttpHeaders().set('Authorization',  `Bearer ${localStorage.getItem('token')}`)
+    };
+    const headers: HttpHeaders = new HttpHeaders().set('Authorization',  `Bearer ${localStorage.getItem('token')}`);
+    return this.httpClient.put(`${this.baseURL + "/favorito"}`, null, options)
+  }
 }
