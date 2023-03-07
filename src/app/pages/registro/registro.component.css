@@ -15,7 +15,7 @@ mat-card {
   -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75) !important;
   -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75) !important;
   box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75) !important;
-  background-color: rgba(245, 245, 245, 0.792);
+  background-color: rgba(255, 255, 255, 0.543);
   width: 500px;
   max-width: 500px;
   padding: 30px;
@@ -64,6 +64,8 @@ input[type="file"] {
   font-size: 16px;
   font-weight: bold;
   color: black;
+  margin-left: 2px;
+
 }
 
 .button-wrap {
@@ -73,7 +75,7 @@ input[type="file"] {
 .container .button {
   display: inline-block;
   text-align: center;
-  padding: 8px 7px;
+  padding: 10px 8px;
   cursor: pointer;
   border-radius: 5px;
   background-color: #673ab7;

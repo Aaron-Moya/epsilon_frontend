@@ -53,7 +53,18 @@ export class UsuarioService {
       params: new HttpParams().set('idUsuario', params.idUsuario).set('idProducto', params.idProducto),
       headers: new HttpHeaders().set('Authorization',  `Bearer ${localStorage.getItem('token')}`)
     };
-    const headers: HttpHeaders = new HttpHeaders().set('Authorization',  `Bearer ${localStorage.getItem('token')}`);
     return this.httpClient.put(`${this.baseURL + "/favorito"}`, null, options)
+  }
+
+  deleteProductoFavorito(idUsuario: number, idProducto: number): Observable<Object> {
+    const params = {
+      idUsuario: idUsuario,
+      idProducto: idProducto,
+    };
+    const options = {
+      params: new HttpParams().set('idUsuario', params.idUsuario).set('idProducto', params.idProducto),
+      headers: new HttpHeaders().set('Authorization',  `Bearer ${localStorage.getItem('token')}`)
+    };
+    return this.httpClient.delete(`${this.baseURL + "/favorito"}`, options)
   }
 }

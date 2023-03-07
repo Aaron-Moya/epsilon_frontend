@@ -51,6 +51,11 @@ img {
     max-height: 150px;
 }
 
+img:hover {
+    transform: scale(1.2);
+    transition: 1s ease;
+}
+
 mat-card {
     -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75) !important;
     -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75) !important;
@@ -90,6 +95,8 @@ mat-card-content p {
     color: white;
     margin-right: 15px;
     height: 50px;
+    cursor: pointer;
+
 }
 
 .fav-button:hover {
@@ -105,6 +112,8 @@ mat-card-content p {
     font-weight: bold;
     color: white;
     height: 50px;
+    cursor: pointer;
+
 }
 
 .cart-button:hover {

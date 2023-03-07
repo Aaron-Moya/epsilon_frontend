@@ -1,11 +1,33 @@
-<section class="product-list ">
-    <div class="product-container">
-        <div *ngFor="let producto of productos; index as i;" class="card">
-            <div class="title">{{ producto.nombre }}</div>
-            <div class="image">
-                <a [routerLink]="['/producto', producto.id]"><img [src]="producto.imagen" /></a>
+<div class="container">
+    <h2>Tus productos favoritos</h2>
+    <mat-card *ngFor="let producto of productos; index as i;">
+        <mat-card-content>
+            <a [routerLink]="['/producto', producto.id]">
+                <img [src]="producto.imagen" [alt]="producto.imagen">
+            </a>
+            <div class="datos">
+                <p class="nombre">{{ producto.nombre }}</p>
+                <p class="fechaPublicacion">Publicado el {{ producto.fechaCreacion }}</p>
+                <p class="estado">Estado: {{ producto.estado }}</p>
+                <p class="stock">Stock: {{ producto.stock }}</p>
+                <p class="precio">{{ producto.precio | currency }}</p>
             </div>
-            <div class="text">{{ producto.precio | currency }}</div>
-        </div>
-    </div>
-</section>
+            <div class="botones">
+                <button class="fav-button" (click)="eliminarProductoFavorito(producto.id)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>
+
+<!-- <div class="container">
+    <mat-card *ngFor="let producto of productos; index as i;" class="card">
+        <mat-card-title>{{ producto.nombre }}</mat-card-title>
+        <mat-card-content>
+            <p>
+                {{ producto.descripcion }}
+            </p>
+        </mat-card-content>
+    </mat-card>
+</div> -->

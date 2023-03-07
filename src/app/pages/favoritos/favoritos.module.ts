@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { FavoritosRoutingModule } from './favoritos-routing.module';
 import { FavoritosComponent } from './favoritos.component';
+import { MaterialModule } from 'src/app/app-material.module';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { FavoritosComponent } from './favoritos.component';
   ],
   imports: [
     CommonModule,
-    FavoritosRoutingModule
+    FavoritosRoutingModule,
+    MaterialModule
   ]
 })
 export class FavoritosModule { }

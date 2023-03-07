@@ -9,7 +9,7 @@
                 <p class="stock">Stock: {{ producto.stock }}</p>
                 <p class="precio">{{ producto.precio | currency }}</p>
                 <div class="botones">
-                    <button class="fav-button">
+                    <button class="fav-button" (click)="addProductoFavorito(producto.id)">
                         <mat-icon>favorite</mat-icon>
                     </button>
                     <button class="cart-button">
