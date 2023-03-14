@@ -55,6 +55,11 @@ export class ProductoService {
     return this.httpClient.post(`${this.baseURL}`, formData, { headers });
   };
 
+  modificarAnuncio(formData: FormData): Observable<Object> {
+    const headers: HttpHeaders = new HttpHeaders().set('Authorization',  `Bearer ${localStorage.getItem('token')}`);
+    return this.httpClient.put(`${this.baseURL}`, formData, { headers });
+  };
+
   deleteProductoFavorito(idUsuario: number, idProducto: number): Observable<Object> {
     const params = {
       idUsuario: idUsuario,

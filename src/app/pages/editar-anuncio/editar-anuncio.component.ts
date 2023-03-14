@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Categorias } from 'src/app/shared/interfaces/categorias';
 import { Productos } from 'src/app/shared/interfaces/productos';
 import { Usuarios } from 'src/app/shared/interfaces/usuarios';
@@ -37,7 +37,7 @@ export class EditarAnuncioComponent implements OnInit {
   idUsuarioLogueado!: string;
   usuario!: Usuarios;
   constructor(private categoriaService: CategoriaService, private productoService: ProductoService,
-    private usuarioService: UsuarioService, private route: ActivatedRoute) { }
+    private usuarioService: UsuarioService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     this.categoriaService.obtenerCategorias().subscribe(categorias => {
@@ -46,7 +46,6 @@ export class EditarAnuncioComponent implements OnInit {
 
     this.productoService.obtenerProductoPorId(this.route.snapshot.params['idProducto']).subscribe(data => {
       this.producto = data;
-      console.log(this.producto);
       this.rellenarCampos();
     });
     
@@ -74,6 +73,38 @@ export class EditarAnuncioComponent implements OnInit {
   }
 
   onSubmit(): void {
+    // Cambiar campos a this.producto.
+    if (this.form.valid) {
+      this.producto.nombre = this.form.get<string>('nombre')?.value;
+      this.producto.descripcion = this.form.get<string>('descripcion')?.value;
+      this.producto.estado = this.form.get<string>('estado')?.value;
+      this.producto.stock = this.form.get<string>('stock')?.value;
+      this.producto.precio = this.form.get<string>('precio')?.value;
+      this.producto.categorias = this.categorias.find(cat => cat.id == this.form.get<string>('categoria')?.value) as Categorias;
+      this.producto.usuarios = this.usuario;
+
+      const json = JSON.stringify(this.producto);
+
+      if (this.imagen != null) {
+        this.formData.append('file', this.imagen);
+      }
+      this.formData.append('producto', new Blob([json], { type: 'application/json' }));
+
+      this.productoService.modificarAnuncio(this.formData).subscribe(data => {
+        Swal.fire({
+          icon: 'success',
+          title: '¡Anuncio modificado correctamente!',
+        });
+        this.router.navigate(['/']);
+      }, err => {
+        Swal.fire({
+          icon: 'error',
+          title: '¡Error al modificar el anuncio!',
+        });
+        console.log(err);
+      });
+    }
+    
   }
 
 }
