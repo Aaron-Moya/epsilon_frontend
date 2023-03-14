@@ -28,7 +28,7 @@ export class DetallesProductoComponent implements OnInit {
   addProductoFavorito(idProducto: number): void {
     const idUsuario = localStorage.getItem('idUsuarioLogueado');
     if (idUsuario != null) {
-      this.usuarioService.addProductoFavorito(parseInt(idUsuario), idProducto).subscribe(data => {
+      this.productoService.addProductoFavorito(parseInt(idUsuario), idProducto).subscribe(data => {
         Swal.fire({
           icon: 'info',
           title: '¡Producto añadido a favoritos!',

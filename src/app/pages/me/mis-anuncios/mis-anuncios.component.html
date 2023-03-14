@@ -1,1 +1,32 @@
-<p>mis-anuncios works!</p>
+<div class="container">
+    <h2>Tus anuncios</h2>
+    <mat-card *ngFor="let producto of productos; index as i;">
+        <mat-card-content>
+            <a [routerLink]="['/producto', producto.id]">
+                <img [src]="producto.imagen" [alt]="producto.imagen">
+            </a>
+            <div class="datos">
+                <p class="nombre">{{ producto.nombre }}</p>
+                <p class="fechaPublicacion">Publicado el {{ producto.fechaCreacion }}</p>
+                <p class="estado">Estado: {{ producto.estado }}</p>
+                <p class="stock">Stock: {{ producto.stock }}</p>
+                <p class="precio">{{ producto.precio | currency }}</p>
+            </div>
+            <div class="botones">
+                <button class="edit-button" (click)="editarProducto(producto.id)">
+                    <mat-icon>edit</mat-icon>
+                </button>
+                <button class="delete-button" (click)="eliminarProducto(producto.id)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>
+
+<div class="centrado">
+    <mat-paginator #paginator [length]="totalElements" [pageSize]="size" 
+        (page)="onPageChange($event)"
+        [showFirstLastButtons]="true" [hidePageSize]="true">
+    </mat-paginator>
+</div>

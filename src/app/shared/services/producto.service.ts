@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Productos } from '../interfaces/productos';
 import { Page } from '../interfaces/page';
@@ -23,9 +23,47 @@ export class ProductoService {
     return this.httpClient.get<Productos>(`${this.baseURL + "/id/" + id}`);
   }
 
+  obtenerProductosFavoritos(idUsuario: number): Observable<Productos[]> {
+    const headers: HttpHeaders = new HttpHeaders().set('Authorization',  `Bearer ${localStorage.getItem('token')}`);
+    return this.httpClient.get<Productos[]>(`${this.baseURL + "/favoritos"}`, {
+      params: {idUsuario: idUsuario},
+      headers : headers
+    });
+  }
+
+  obtenerProductosDeUsuario(page: number, size: number, idUsuario: number): Observable<Productos[]> {
+    const headers: HttpHeaders = new HttpHeaders().set('Authorization',  `Bearer ${localStorage.getItem('token')}`);
+    return this.httpClient.get<Productos[]>(`${this.baseURL + "/usuario" + "?page=" + page + "&idUsuario=" + idUsuario + "&size=" + size}`, {
+      headers : headers
+    });
+  }
+
+  addProductoFavorito(idUsuario: number, idProducto: number): Observable<Object> {
+    const params = {
+      idUsuario: idUsuario,
+      idProducto: idProducto,
+    };
+    const options = {
+      params: new HttpParams().set('idUsuario', params.idUsuario).set('idProducto', params.idProducto),
+      headers: new HttpHeaders().set('Authorization',  `Bearer ${localStorage.getItem('token')}`)
+    };
+    return this.httpClient.put(`${this.baseURL + "/favorito"}`, null, options)
+  }
+
   crearAnuncio(formData: FormData): Observable<Object> {
     const headers: HttpHeaders = new HttpHeaders().set('Authorization',  `Bearer ${localStorage.getItem('token')}`);
     return this.httpClient.post(`${this.baseURL}`, formData, { headers });
   };
 
+  deleteProductoFavorito(idUsuario: number, idProducto: number): Observable<Object> {
+    const params = {
+      idUsuario: idUsuario,
+      idProducto: idProducto,
+    };
+    const options = {
+      params: new HttpParams().set('idUsuario', params.idUsuario).set('idProducto', params.idProducto),
+      headers: new HttpHeaders().set('Authorization',  `Bearer ${localStorage.getItem('token')}`)
+    };
+    return this.httpClient.delete(`${this.baseURL + "/favorito"}`, options)
+  }
 }

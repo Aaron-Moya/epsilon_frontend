@@ -18,7 +18,7 @@ export class FavoritosComponent implements OnInit {
   ngOnInit(): void {
     let idUsuario = localStorage.getItem('idUsuarioLogueado');
     if (idUsuario != null) {
-      this.usuarioService.obtenerProductosFavoritos(parseInt(idUsuario)).subscribe((data: any ) => {
+      this.productoService.obtenerProductosFavoritos(parseInt(idUsuario)).subscribe((data: any ) => {
         this.productos = data;
         this.productos.sort((a,b) => a.nombre.localeCompare(b.nombre));
       });
@@ -28,12 +28,12 @@ export class FavoritosComponent implements OnInit {
   eliminarProductoFavorito(idProducto: number) {
     const idUsuario = localStorage.getItem('idUsuarioLogueado');
       if (idUsuario != null) {
-        this.usuarioService.deleteProductoFavorito(parseInt(idUsuario), idProducto).subscribe(data => {
+        this.productoService.deleteProductoFavorito(parseInt(idUsuario), idProducto).subscribe(data => {
           Swal.fire({
             icon: 'info',
             title: '¡Producto eliminado de favoritos!',
           });
-          this.usuarioService.obtenerProductosFavoritos(parseInt(idUsuario)).subscribe((data: any ) => {
+          this.productoService.obtenerProductosFavoritos(parseInt(idUsuario)).subscribe((data: any ) => {
             this.productos = data;
             this.productos.sort((a,b) => a.nombre.localeCompare(b.nombre));
           });

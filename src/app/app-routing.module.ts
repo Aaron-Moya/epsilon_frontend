@@ -8,6 +8,7 @@ const routes: Routes = [
   { path: 'me', loadChildren: () => import('./pages/me/me.module').then(m => m.MeModule) },
   { path: 'producto/:id', loadChildren: () => import('./pages/detalles-producto/detalles-producto.module').then(m => m.DetallesProductoModule) },
   { path: 'favoritos', loadChildren: () => import('./pages/favoritos/favoritos.module').then(m => m.FavoritosModule) },
+  { path: 'editar-anuncio/:idProducto', loadChildren: () => import('./pages/editar-anuncio/editar-anuncio.module').then(m => m.EditarAnuncioModule) },
   { path: '**', redirectTo: '', pathMatch: 'full' }
 ];
 
