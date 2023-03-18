@@ -41,7 +41,20 @@ export class ListaProductosComponent implements OnInit {
 
   addProductoFavorito(idProducto: number): void {
       const idUsuario = localStorage.getItem('idUsuarioLogueado');
+      let error = false;
       if (idUsuario != null) {
+        this.productos.forEach(prod => {
+          if (prod.usuarios.id == parseInt(idUsuario)) {
+            Swal.fire({
+              icon: 'info',
+              title: '¡No puedes añadir tu propio producto a favoritos!',
+            });
+            error = true;
+          }
+        })
+      }
+
+      if (idUsuario != null && !error) {
         this.productoService.addProductoFavorito(parseInt(idUsuario), idProducto).subscribe(data => {
           Swal.fire({
             icon: 'info',

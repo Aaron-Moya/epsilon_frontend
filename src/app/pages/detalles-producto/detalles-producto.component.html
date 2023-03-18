@@ -4,6 +4,7 @@
             <img [src]="producto.imagen" [alt]="producto.imagen" width="150" height="150">
             <div class="datos">
                 <p class="nombre">{{ producto.nombre }}</p>
+                <p>Publicado por <a [routerLink]="['/usuario', producto.usuarios.id]">{{ producto.usuarios.usuario }}</a></p>
                 <p class="fechaPublicacion">Publicado el {{ producto.fechaCreacion }}</p>
                 <p class="estado">Estado: {{ producto.estado }}</p>
                 <p class="stock">Stock: {{ producto.stock }}</p>

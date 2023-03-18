@@ -9,6 +9,7 @@ const routes: Routes = [
   { path: 'producto/:id', loadChildren: () => import('./pages/detalles-producto/detalles-producto.module').then(m => m.DetallesProductoModule) },
   { path: 'favoritos', loadChildren: () => import('./pages/favoritos/favoritos.module').then(m => m.FavoritosModule) },
   { path: 'editar-anuncio/:idProducto', loadChildren: () => import('./pages/editar-anuncio/editar-anuncio.module').then(m => m.EditarAnuncioModule) },
+  { path: 'usuario/:id', loadChildren: () => import('./pages/detalles-usuario/detalles-usuario.module').then(m => m.DetallesUsuarioModule) },
   { path: '**', redirectTo: '', pathMatch: 'full' }
 ];
 

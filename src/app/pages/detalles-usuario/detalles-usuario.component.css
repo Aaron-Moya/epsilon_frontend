@@ -1,13 +1,14 @@
 .container {
     display: flex;
     justify-content: center;
-    align-items: left;
+    align-items: center;
     margin: 50px 0px;
 }
 
 .datos {
     display: flex;
     flex-direction: column;
+    justify-content: center;
 }
 
 .nombre {
@@ -36,7 +37,6 @@
 
 .stock {
     color: greenyellow;
-
 }
 
 mat-card-title {
@@ -81,53 +81,41 @@ mat-card-content p {
     width: 100%;
 }
 
-.botones {
+.centrado {
     display: flex;
-    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
 }
 
-.fav-button {
-    background-color: #d224f9;
-    border: none;
-    padding: 1em;
-    border-radius: 5px;
-    font-weight: bold;
+.producto {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.producto mat-card {
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75) !important;
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75) !important;
+    box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75) !important;
+    background-color: #32117d;
+    width: 100%;
+    max-width: 500px;
     color: white;
-    margin-right: 15px;
-    height: 50px;
-    cursor: pointer;
-
+    padding: 30px;
+    margin-bottom: 30px;
+    margin-right: 20px;
 }
 
-.fav-button:hover {
-    box-shadow: 0px 4px 4px #c024f9;
-    color: #fb1d1d;
-}
-
-.cart-button {
-    background-color: #f9ca24;
-    border: none;
-    padding: 1em;
-    border-radius: 5px;
-    font-weight: bold;
+h2 {
+    display: flex;
+    align-content: center;
+    justify-content: center;
     color: white;
-    height: 50px;
-    cursor: pointer;
-
+    font-size: 1.5rem;
 }
 
-.cart-button:hover {
-    box-shadow: 0px 4px 4px #f9c024;
-    color: #fb1d1d;
-}
-
-.product-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-column-gap: 20px;
-    grid-row-gap: 40px;
-}
-
-a {
-    color: white;
+.avatar {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
 }

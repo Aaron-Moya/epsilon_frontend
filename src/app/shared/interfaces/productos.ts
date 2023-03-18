@@ -13,4 +13,5 @@ export class Productos {
     fechaCreacion!: Date;
     imagen!: string;
     usuarios!: Usuarios;
+    borrado!: boolean;
 }

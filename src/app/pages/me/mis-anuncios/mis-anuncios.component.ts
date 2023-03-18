@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Productos } from 'src/app/shared/interfaces/productos';
 import { ProductoService } from 'src/app/shared/services/producto.service';
 import { UsuarioService } from 'src/app/shared/services/usuario.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'mis-anuncios',
@@ -43,6 +44,18 @@ export class MisAnunciosComponent implements OnInit {
   }
 
   eliminarProducto(idProducto: number) : void {
-
+    this.productoService.deleteProducto(idProducto).subscribe(data => {
+      Swal.fire({
+        icon: 'success',
+        title: '¡Anuncio borrado correctamente!',
+      });
+      this.getProductosUsuario();
+    }, err => {
+      Swal.fire({
+        icon: 'error',
+        title: '¡Error al borrar el anuncio!',
+      });
+      console.log(err);
+    });
   }
 }
