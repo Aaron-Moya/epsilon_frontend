@@ -12,13 +12,15 @@ import Swal from 'sweetalert2';
 export class FavoritosComponent implements OnInit {
 
   productos!: Productos[];
-  
-  constructor(private productoService: ProductoService, private usuarioService: UsuarioService) { }
+  idUsuario!: any;
+  constructor(private productoService: ProductoService, private usuarioService: UsuarioService) { 
+    this.idUsuario = localStorage.getItem('idUsuarioLogueado');
+
+  }
 
   ngOnInit(): void {
-    let idUsuario = localStorage.getItem('idUsuarioLogueado');
-    if (idUsuario != null) {
-      this.productoService.obtenerProductosFavoritos(parseInt(idUsuario)).subscribe((data: any ) => {
+    if (this.idUsuario != null) {
+      this.productoService.obtenerProductosFavoritos(parseInt(this.idUsuario)).subscribe((data: any ) => {
         this.productos = data;
         this.productos.sort((a,b) => a.nombre.localeCompare(b.nombre));
       });

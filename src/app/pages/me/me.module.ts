@@ -7,12 +7,14 @@ import { MaterialModule } from 'src/app/app-material.module';
 import { CrearAnuncioComponent } from './crear-anuncio/crear-anuncio.component';
 import { MisAnunciosComponent } from './mis-anuncios/mis-anuncios.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { PerfilComponent } from './perfil/perfil.component';
 
 @NgModule({
   declarations: [
     MeComponent,
     CrearAnuncioComponent,
-    MisAnunciosComponent
+    MisAnunciosComponent,
+    PerfilComponent
   ],
   imports: [
     CommonModule,

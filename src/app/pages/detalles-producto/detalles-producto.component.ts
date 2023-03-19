@@ -29,6 +29,7 @@ export class DetallesProductoComponent implements OnInit {
   addProductoFavorito(idProducto: number): void {
     const idUsuario = localStorage.getItem('idUsuarioLogueado');
     let error = false;
+    
     if (idUsuario != null) {
       if (this.producto.usuarios.id == parseInt(idUsuario)) {
         Swal.fire({

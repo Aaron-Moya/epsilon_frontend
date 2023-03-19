@@ -1,0 +1,18 @@
+<div class="container">
+    <mat-card>
+        <mat-card-content>
+            <div class="avatar-container">
+                <img class="avatar"[src]="usuario.avatar" [alt]="usuario.avatar" width="150" height="150">
+                <button class="edit-button" (click)="abrirDialogoImagen()">
+                    <input type="file" accept="image/png, image/jpg, image/jpeg, image/gif" style="display: none" #file (change)="onFileSelected($event)"/>
+                    <mat-icon>edit</mat-icon>
+                </button>
+            </div>
+            <div class="datos">
+                <p class="nombre">{{ usuario.usuario }}</p>
+                <p class="nombre">{{ usuario.correo }}</p>
+                <p class="fechaPublicacion">Te uniste el {{ usuario.fechaCreacion }}</p>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>

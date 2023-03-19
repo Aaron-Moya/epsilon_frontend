@@ -22,6 +22,7 @@ export class MeComponent implements OnInit {
   constructor(private router: Router) { 
     const state = this.router.getCurrentNavigation()?.extras.state;
     if (state != undefined) this.opcionMenu = state['opcionMenu'];
+    else this.opcionMenu = "perfil";
   }
 
   ngOnInit(): void {

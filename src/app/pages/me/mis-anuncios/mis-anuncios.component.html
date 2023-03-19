@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="productos.length > 0">
     <h2>Tus anuncios</h2>
     <mat-card *ngFor="let producto of productos; index as i;">
         <mat-card-content>
@@ -24,9 +24,13 @@
     </mat-card>
 </div>
 
-<div class="centrado">
+<div class="centrado" *ngIf="productos.length > 0">
     <mat-paginator #paginator [length]="totalElements" [pageSize]="size" 
         (page)="onPageChange($event)"
         [showFirstLastButtons]="true" [hidePageSize]="true">
     </mat-paginator>
+</div>
+
+<div class="centrado" *ngIf="productos.length <= 0">
+    <h2>No tienes ningún anuncio publicado :(</h2>
 </div>

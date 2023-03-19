@@ -27,9 +27,7 @@ export class DetallesUsuarioComponent implements OnInit {
       const idUsuario = params['id'];
       this.usuarioService.obtenerUsuarioPorId(idUsuario).subscribe(data => {
         this.usuario = data;
-        console.log(this.usuario);
         this.getProductosUsuario();
-        console.log(this.productos);
       });
     });
   }

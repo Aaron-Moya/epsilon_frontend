@@ -32,9 +32,12 @@ export class UsuarioService {
     });
   }
 
-  
-
   registrarUsuario(formData: FormData): Observable<Object> {
     return this.httpClient.post(`${this.baseURL + "/registro"}`, formData);
+  };
+
+  cambiarAvatar(formData: FormData): Observable<Object> {
+    const headers: HttpHeaders = new HttpHeaders().set('Authorization',  `Bearer ${localStorage.getItem('token')}`);
+    return this.httpClient.put(`${this.baseURL + "/avatar"}`, formData, { headers });
   };
 }
