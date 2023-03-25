@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { FormsModule } from '@angular/forms';
 import { MaterialModule } from './app-material.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,7 +22,8 @@ import { SpinnerInterceptor } from './shared/interceptors/spinner.interceptor';
         BrowserAnimationsModule,
         MaterialModule,
         HttpClientModule,
-        SpinnerModule
+        SpinnerModule,
+        FormsModule
     ],
     providers: [{
         provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true

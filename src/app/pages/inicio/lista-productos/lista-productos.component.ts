@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
+import { Router } from '@angular/router';
 import { Productos } from 'src/app/shared/interfaces/productos';
 import { ProductoService } from 'src/app/shared/services/producto.service';
 import { UsuarioService } from 'src/app/shared/services/usuario.service';
@@ -17,13 +18,28 @@ export class ListaProductosComponent implements OnInit {
   size = 6;
   totalElements = 0;
 
-  constructor(private productoService: ProductoService, private usuarioService: UsuarioService) { }
+  filtros: { [id: string]: String; } = {};
+
+  constructor(private productoService: ProductoService, private usuarioService: UsuarioService, private router: Router) {
+    //const state = this.router.getCurrentNavigation()?.extras.state;
+    //if (state != undefined) this.filtros = state['filtros'];
+  }
 
   ngOnInit(): void {
-    this.productoService.obtenerProductos(this.page, this.size).subscribe((data: any )=> {
-      this.productos = data.content;
-      this.totalElements = data.totalElements;
-    })
+    if (ProductoService.filtros.size <= 0) {
+      this.productoService.obtenerProductos(this.page, this.size).subscribe((data: any )=> {
+        this.productos = data.content;
+        this.totalElements = data.totalElements;
+      });
+    }
+    else {
+      this.productoService.obtenerProductosPorFiltro(this.page, this.size).subscribe((data: any )=> {
+        console.log(data);
+        this.productos = data.content;
+        console.log(this.productos);
+        this.totalElements = data.totalElements;
+      });
+    }
   }
 
   getProductos(): void {

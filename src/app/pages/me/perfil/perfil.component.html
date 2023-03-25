@@ -24,18 +24,28 @@
             <form [formGroup]="formDireccion">
                 <p>
                     <mat-form-field color="accent">
-                        <input type="text" matInput placeholder="Calle" formControlName="calle" required>
+                        <input type="text" matInput placeholder="Calle" formControlName="calle" maxlength="30" required>
                     </mat-form-field>
+                    <br/>
+                    <span *ngIf="this.formDireccion.get('calle')?.errors?.['minlength']" style="color: red;">
+                        La calle tiene que tener al menos 5 carácteres.
+                    </span>
                 </p>
                 <p>
                     <mat-form-field color="accent">
-                        <input type="text" matInput placeholder="Número" formControlName="numero" required>
+                        <input type="number" matInput placeholder="Número" formControlName="numero" maxlength="5" required>
                     </mat-form-field>
+                    <span *ngIf="this.formDireccion.get('numero')?.errors?.['minlength']" style="color: red;">
+                        El número no puede estar vacío.
+                    </span>
                 </p>
                 <p>
                     <mat-form-field color="accent">
-                        <input type="text" matInput placeholder="Ciudad" formControlName="ciudad" required>
+                        <input type="text" matInput placeholder="Ciudad" formControlName="ciudad" maxlength="30" required>
                     </mat-form-field>
+                    <span *ngIf="this.formDireccion.get('ciudad')?.errors?.['minlength']" style="color: red;">
+                        La ciudad tiene que tener al menos 3 carácteres.
+                    </span>
                 </p>
                 <div class="button">
                     <button type="submit" mat-button class="editarBtn" (click)="editarFormularioDireccion()">Editar</button>

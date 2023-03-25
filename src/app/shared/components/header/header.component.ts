@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, OnInit, SimpleChanges } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { Usuarios } from '../../interfaces/usuarios';
+import { ProductoService } from '../../services/producto.service';
 import { UsuarioLogueadoService } from '../../services/usuario-logueado.service';
 import { UsuarioService } from '../../services/usuario.service';
 
@@ -11,8 +12,9 @@ import { UsuarioService } from '../../services/usuario.service';
 })
 export class HeaderComponent implements OnInit {
   usuarioLogueado!: Usuarios;
+  nombreProducto: String = "";
 
-  constructor(private usuarioService: UsuarioService, private usuarioLogueadoService: UsuarioLogueadoService, private router:Router) { }
+  constructor(private usuarioService: UsuarioService, private usuarioLogueadoService: UsuarioLogueadoService, private router: Router) { }
 
   ngOnInit(): void {
     // Actualiza el usuario logueado si se han detectado cambios
@@ -27,7 +29,12 @@ export class HeaderComponent implements OnInit {
     })
   }
 
-  irAFavoritos() : void {
+  irAInicio(): void {
+    ProductoService.filtros = new Map();
+    this.router.navigate(['/']);
+  }
+
+  irAFavoritos(): void {
     this.router.navigate(['/favoritos']);
   }
 
@@ -47,5 +54,24 @@ export class HeaderComponent implements OnInit {
   cerrarSesion(): void {
     this.usuarioLogueadoService.cerrarSesion();
     this.router.navigate(['/']);
+  }
+
+  filtrarProductos(): void {
+    const filtros: { [id: string]: String; } = {};
+    filtros['nombre'] = this.nombreProducto;
+
+    ProductoService.filtros.set('nombre', this.nombreProducto);
+
+    /*const extras: NavigationExtras = {
+      state: {
+        filtros: filtros
+      }
+    };*/
+    this.router.routeReuseStrategy.shouldReuseRoute = function () {
+      return false;
+    }
+    this.router.onSameUrlNavigation = 'reload';
+    //this.router.navigate(['/anuncios'], extras);
+    this.router.navigate(['/anuncios']);
   }
 }

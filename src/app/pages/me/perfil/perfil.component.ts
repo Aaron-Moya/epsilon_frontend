@@ -73,7 +73,6 @@ export class PerfilComponent implements OnInit {
           icon: 'error',
           title: '¡Error al cambiar el avatar!',
         });
-        console.log(err);
       });
     }
   }
@@ -110,19 +109,34 @@ export class PerfilComponent implements OnInit {
     direccion.numero = this.formDireccion.controls['numero'].value;
     direccion.ciudad = this.formDireccion.controls['ciudad'].value;
     if (this.formDireccion.valid) {
-      if (!this.editarDireccion) {
+      if (!this.editarDireccion) { // Crear nueva dirección
           const json = JSON.stringify(direccion);
           this.direccionService.crearDireccion(json, 35).subscribe(data => {
-            console.log("direccion creada correctamente");
-          }, err => console.log)
+            Swal.fire({
+              icon: 'success',
+              title: 'Dirección creada correctamente!',
+            });
+          }, err => {
+            Swal.fire({
+              icon: 'error',
+              title: '¡Error al crear la dirección!',
+            });
+          });
       }
-      else {
+      else { // Actualizar dirección
         direccion.id = this.usuario.direccion.id;
         const json = JSON.stringify(direccion);
-        console.log(direccion);
         this.direccionService.actualizarDireccion(json).subscribe(data => {
-          console.log("direccion modificada correctamente");
-        }, err => console.log)
+          Swal.fire({
+            icon: 'success',
+            title: 'Dirección actualizada correctamente!',
+          });
+        }, err => {
+          Swal.fire({
+            icon: 'error',
+            title: '¡Error al actualizar la dirección!',
+          });
+        });
       }
     }
   }

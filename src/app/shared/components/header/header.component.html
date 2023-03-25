@@ -4,13 +4,13 @@
     <mat-toolbar color="primary" >
         <mat-toolbar-row class="content">
 
-            <a [routerLink]="['/']"><img src="assets/images/logo.png" alt="logo.png" width="50" height="50"></a>
+            <a href="" (click)="irAInicio()"><img src="assets/images/logo.png" alt="logo.png" width="50" height="50"></a>
 
             <span class="title">epsilon</span>
 
-            <form action="">
+            <form (submit)="filtrarProductos()">
                 <div class="Icon-inside">
-                    <input type="text">
+                    <input type="text" [(ngModel)]="nombreProducto" name="nombreProducto">
                     <i class="fa fa-search fa-lg fa-fw" aria-hidden="true"></i>
                   </div>
             </form>

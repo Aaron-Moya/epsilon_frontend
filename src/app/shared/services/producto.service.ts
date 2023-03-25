@@ -13,10 +13,28 @@ export class ProductoService {
   // Esta URL obtiene el listado de todas las categorias en el backend
   private baseURL = "http://localhost:8080/api/productos";
 
+  //public static filtros: { [id: string]: String; } = {};
+  public static filtros: Map<String, String> = new Map();
+
   constructor(private httpClient: HttpClient) { }
 
   obtenerProductos(page: number, size: number): any {
     return this.httpClient.get<Page<Productos>>(`${this.baseURL + "?page=" + page + "&size=" + size}`);
+  };
+
+  obtenerProductosPorFiltro(page: number, size: number): any {
+    let urlExtra = `${"?page=" + page + "&size=" + size}`;
+    /*let filtros = new HttpParams();
+    filtros.set('page', page);
+    filtros.set('size', size);
+
+    ProductoService.filtros.forEach((value,key) => {
+      filtros.set(key.toString(), value.toString());
+      console.log(key + " " + value + " peticion get foreach");
+      urlExtra += `${"&" + key + "=" + value}`;
+    });*/
+    console.log(urlExtra);
+    return this.httpClient.get<Page<Productos>>(`${this.baseURL + "/filtro" + urlExtra}`);
   };
 
   obtenerProductoPorId(id: number): Observable<Productos> {
