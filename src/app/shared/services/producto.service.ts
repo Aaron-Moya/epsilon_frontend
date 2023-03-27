@@ -24,16 +24,10 @@ export class ProductoService {
 
   obtenerProductosPorFiltro(page: number, size: number): any {
     let urlExtra = `${"?page=" + page + "&size=" + size}`;
-    /*let filtros = new HttpParams();
-    filtros.set('page', page);
-    filtros.set('size', size);
 
     ProductoService.filtros.forEach((value,key) => {
-      filtros.set(key.toString(), value.toString());
-      console.log(key + " " + value + " peticion get foreach");
       urlExtra += `${"&" + key + "=" + value}`;
-    });*/
-    console.log(urlExtra);
+    });
     return this.httpClient.get<Page<Productos>>(`${this.baseURL + "/filtro" + urlExtra}`);
   };
 
