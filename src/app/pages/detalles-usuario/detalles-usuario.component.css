@@ -119,3 +119,9 @@ h2 {
     width: 150px;
     height: 150px;
 }
+
+.precioTachado {
+    text-decoration:line-through;
+    color: rgba(255, 0, 0, 0.685);
+    margin-right: 5px;
+  }

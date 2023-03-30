@@ -8,6 +8,7 @@ export class Productos {
     descripcion!: string;
     estado!: string;
     precio!: number;
+    descuento!: number;
     stock!: number;
     categorias!: Categorias;
     fechaCreacion!: Date;

@@ -34,6 +34,10 @@
     font-weight: 500;
 }
 
+.precio {
+    padding-bottom: 10px;
+}
+
 .stock {
     color: greenyellow;
 
@@ -131,3 +135,9 @@ mat-card-content p {
 a {
     color: white;
 }
+
+.precioTachado {
+    text-decoration:line-through;
+    color: rgba(255, 0, 0, 0.685);
+    margin-right: 5px;
+  }

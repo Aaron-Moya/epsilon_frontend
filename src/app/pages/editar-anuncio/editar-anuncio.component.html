@@ -58,6 +58,13 @@
 
             <p>
                 <mat-form-field>
+                    <input type="number" ngModel number matInput placeholder="Descuento" formControlName="descuento" min="0.00" [max]="this.form.controls['precio'].value" step="0.01" formControlName="descuento">
+                </mat-form-field>
+                <br/>
+            </p>
+
+            <p>
+                <mat-form-field>
                     <input type="number" matInput placeholder="Stock" formControlName="stock" min="1" max="10000" required formControlName="stock">
                 </mat-form-field>
                 <br/>

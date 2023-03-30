@@ -10,7 +10,13 @@
                 <p class="fechaPublicacion">Publicado el {{ producto.fechaCreacion }}</p>
                 <p class="estado">Estado: {{ producto.estado }}</p>
                 <p class="stock">Stock: {{ producto.stock }}</p>
-                <p class="precio">{{ producto.precio | currency }}</p>
+                <div class="precio" *ngIf="producto.descuento <= 0">
+                    {{ producto.precio | currency:'EUR' }} 
+                </div>
+                <div class="precio" *ngIf="producto.descuento > 0">
+                    <span class="precioTachado">{{ producto.precio | currency:'EUR' }} </span>
+                    <span class="precio">{{ producto.precio - producto.descuento | currency:'EUR' }}</span>
+                </div>
             </div>
             <div class="botones">
                 <button class="edit-button" (click)="editarProducto(producto.id)">
