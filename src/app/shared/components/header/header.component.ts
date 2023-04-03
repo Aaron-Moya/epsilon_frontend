@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, OnInit, SimpleChanges } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
+import { FiltroCategoria } from '../../interfaces/filtroCategoria';
 import { Usuarios } from '../../interfaces/usuarios';
 import { ProductoService } from '../../services/producto.service';
 import { UsuarioLogueadoService } from '../../services/usuario-logueado.service';
@@ -12,7 +13,7 @@ import { UsuarioService } from '../../services/usuario.service';
 })
 export class HeaderComponent implements OnInit {
   usuarioLogueado!: Usuarios;
-  nombreProducto: String = "";
+  nombreProducto: string = "";
 
   constructor(private usuarioService: UsuarioService, private usuarioLogueadoService: UsuarioLogueadoService, private router: Router) { }
 
@@ -30,7 +31,7 @@ export class HeaderComponent implements OnInit {
   }
 
   irAInicio(): void {
-    ProductoService.filtros = new Map();
+    ProductoService.filtros = new FiltroCategoria();
     this.router.navigate(['/']);
   }
 
@@ -57,21 +58,12 @@ export class HeaderComponent implements OnInit {
   }
 
   filtrarProductos(): void {
-    const filtros: { [id: string]: String; } = {};
-    filtros['nombre'] = this.nombreProducto;
+    ProductoService.filtros.nombre = this.nombreProducto;
 
-    ProductoService.filtros.set('nombre', this.nombreProducto);
-
-    /*const extras: NavigationExtras = {
-      state: {
-        filtros: filtros
-      }
-    };*/
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
     }
     this.router.onSameUrlNavigation = 'reload';
-    //this.router.navigate(['/anuncios'], extras);
     this.router.navigate(['/anuncios']);
   }
 }

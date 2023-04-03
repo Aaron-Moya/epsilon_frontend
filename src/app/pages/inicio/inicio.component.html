@@ -1,12 +1,10 @@
-<div class="categorias">
+<!-- <div class="categorias">
     <ul>
-        <li>Todo</li>
-        <li>Videojuegos</li>
-        <li>Consolas</li>
-        <li>Tarjetas de regalo</li>
-        <li>Periféricos</li>
-        <li>Móviles</li>
-        <li>Otros</li>
+        <span *ngFor="let categoria of categorias">
+            <a [routerLink]="['/anuncios', categoria.nombre]">
+                <li>{{ categoria.nombre }}</li>
+            </a>
+        </span>
     </ul>
-</div>
+</div> -->
 <lista-productos></lista-productos>

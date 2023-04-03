@@ -20,8 +20,8 @@ export class CategoriaService {
   }
 
   obtenerCategorias(): Observable<Categorias[]> {
-    const headers: HttpHeaders = new HttpHeaders().set('Authorization',  `Bearer ${localStorage.getItem('token')}`);
-    return this.httpClient.get<Categorias[]>(`${this.baseURL}`, {headers});
+    // const headers: HttpHeaders = new HttpHeaders().set('Authorization',  `Bearer ${localStorage.getItem('token')}`);
+    return this.httpClient.get<Categorias[]>(`${this.baseURL}`);
   }
 
 }

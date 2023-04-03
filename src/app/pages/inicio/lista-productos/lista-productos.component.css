@@ -147,3 +147,48 @@
   color: rgba(255, 0, 0, 0.685);
   margin-right: 5px;
 }
+
+.categorias {
+  margin-top: -12px;
+  background-color: #441497;
+  color: white;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.categorias a {
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.categorias a:hover {
+  background-color: #7f23c1;
+  color: #fbdf2c;
+}
+
+.categorias li {
+  display: inline;
+  padding: 0 20px;
+  margin-right: 5px;
+  margin-left: 5px;
+  font-size: 18px;
+  font-weight: 400;
+  align-items: stretch;
+  
+}
+
+.sinproductos {
+  font-size: 2rem;
+  font-weight: 500;
+  margin-top: 3rem;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  color: white;
+}

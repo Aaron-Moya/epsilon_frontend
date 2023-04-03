@@ -1,12 +1,18 @@
-<!-- <div class="productos">
-    <p *ngFor="let producto of productos; index as i;">
-        <img [src]="producto.imagen" [alt]="producto.imagen" width="100" height="100">
-        <br/>
-        <span>{{ producto.nombre }}</span>
-    </p>
-</div> -->
+<div class="categorias">
+    <ul>
+        <span *ngFor="let categoria of categorias">
+            <a (click)="getProductosPorFiltroCategoria(categoria.nombre)">
+                <li>{{ categoria.nombre }}</li>
+            </a>
+        </span>
+    </ul>
+</div>
 
-<section class="product-list ">
+<div class="sinproductos" *ngIf="this.productos.length <= 0">
+    <p>No se ha encontrado ningún producto :(</p>
+</div>
+
+<section class="product-list">
     <div class="product-container">
         <div *ngFor="let producto of productos; index as i;" class="card">
             <div class="title">{{ producto.nombre }}</div>
@@ -30,7 +36,7 @@
     </div>
 </section>
 
-<div class="centrado">
+<div class="centrado" *ngIf="this.productos != undefined && this.productos.length > 0">
     <mat-paginator #paginator [length]="totalElements" [pageSize]="size" 
         (page)="onPageChange($event)"
         [showFirstLastButtons]="true" [hidePageSize]="true">

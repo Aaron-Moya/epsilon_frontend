@@ -1,3 +1,14 @@
+a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+}
+
+a:hover {
+    background-color: #7f23c1;
+    color: #fbdf2c;
+}
+
 li {
     display: inline;
     padding: 0 20px;
