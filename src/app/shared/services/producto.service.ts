@@ -16,11 +16,11 @@ export class ProductoService {
 
   public static filtros: FiltroCategoria = new FiltroCategoria();
   
-  public static comprobarFiltrosVacios(): boolean { 
+  public static hayFiltros(): boolean { 
     if (this.filtros.nombre == undefined && this.filtros.categoria == undefined)
-      return true;
+      return false;
     else 
-      return false
+      return true
   }
 
   constructor(private httpClient: HttpClient) { }

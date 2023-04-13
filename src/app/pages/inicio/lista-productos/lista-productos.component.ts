@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { PageEvent } from '@angular/material/paginator';
 import { Categorias } from 'src/app/shared/interfaces/categorias';
 import { Productos } from 'src/app/shared/interfaces/productos';
@@ -19,14 +20,29 @@ export class ListaProductosComponent implements OnInit {
   size = 6;
   totalElements = 0;
 
+  hayFiltros: boolean = false;
+
+  formFiltros: FormGroup = new FormGroup({
+    nombre: new FormControl(''),
+    descripcion: new FormControl(''),
+    estado: new FormControl(''),
+    categoria: new FormControl(''),
+    stock: new FormControl(''),
+    precio: new FormControl('')
+  });
+
   constructor(private productoService: ProductoService, private categoriaService: CategoriaService) {
     this.categoriaService.obtenerCategorias().subscribe(categorias => {
       this.categorias = categorias;
     });
+    if (ProductoService.hayFiltros()) {
+      this.hayFiltros = true;
+      this.rellenarCamposFiltros();
+    }
   }
 
   ngOnInit(): void {
-    if (ProductoService.comprobarFiltrosVacios())
+    if (!this.hayFiltros)
       this.getProductos();
     else
       this.getProductosPorFiltro();
@@ -55,7 +71,8 @@ export class ListaProductosComponent implements OnInit {
       this.productos = data.content;
       this.totalElements = data.totalElements;
     });
-
+    this.hayFiltros = true;
+    this.rellenarCamposFiltros();
   }
 
   onPageChange(event: PageEvent): void {
@@ -94,6 +111,25 @@ export class ListaProductosComponent implements OnInit {
           title: '¡Error al añadir el producto a favoritos!',
         });
       });
+    }
+  }
+
+  onSubmitFiltros(): void {
+    this.formFiltros.controls['categoria'].setValue(3);
+
+  }
+
+  rellenarCamposFiltros(): void {
+    // if (ProductoService.filtros.categoria != undefined && this.categorias != undefined) {
+    //   this.categorias.forEach(cat => {
+    //     if (cat.nombre === ProductoService.filtros.categoria) {
+    //       this.formFiltros.controls['categoria'].setValue(cat.id);
+    //       console.log(this.formFiltros.controls['categoria'].value);
+    //     }
+    //   });
+    // }
+    if (ProductoService.filtros.nombre != undefined) {
+        this.formFiltros.controls['nombre'].setValue(ProductoService.filtros.nombre);  
     }
   }
 }

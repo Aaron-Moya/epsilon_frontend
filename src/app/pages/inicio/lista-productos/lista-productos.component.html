@@ -8,19 +8,20 @@
     </ul>
 </div>
 
-<div class="sinproductos" *ngIf="this.productos.length <= 0">
+<div class="sinproductos" *ngIf="this.productos != undefined && this.productos.length <= 0">
     <p>No se ha encontrado ningún producto :(</p>
 </div>
 
 <section class="product-list">
-    <div class="product-container">
+    <!-- No hay ningún filtros -->
+    <div class="product-container" *ngIf="!hayFiltros">
         <div *ngFor="let producto of productos; index as i;" class="card">
             <div class="title">{{ producto.nombre }}</div>
             <div class="image">
                 <a [routerLink]="['/producto', producto.id]"><img [src]="producto.imagen" /></a>
             </div>
             <div class="text" *ngIf="producto.descuento <= 0">
-                {{ producto.precio | currency:'EUR' }} 
+                {{ producto.precio | currency:'EUR' }}
             </div>
             <div class="text" *ngIf="producto.descuento > 0">
                 <span class="precioTachado">{{ producto.precio | currency:'EUR' }} </span>
@@ -34,11 +35,89 @@
             </button>
         </div>
     </div>
+    <!-- Hay cualquier filtro -->
+    <div class="container-filtros" *ngIf="hayFiltros">
+        <mat-card class="card-filtro" *ngIf="this.productos != undefined && this.productos.length > 0">
+            <mat-card-title>Filtrar</mat-card-title>
+            <mat-card-content>
+                <form [formGroup]="formFiltros" (ngSubmit)="onSubmitFiltros()">
+                    <p>
+                        <mat-form-field>
+                            <input type="text" matInput placeholder="Nombre" formControlName="nombre">
+                        </mat-form-field>
+                    </p>
+
+                    <!-- <p>
+                        <mat-form-field>
+                            <mat-label>Categoría</mat-label>
+                            <mat-select [disableOptionCentering]="true" formControlName="categoria">
+                                <mat-option *ngFor="let categoria of categorias; index as i;"
+                                    value="{{ categoria.id }}">{{ categoria.nombre }}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </p> -->
+
+                    <p>
+                        <mat-form-field>
+                            <mat-label>Estado</mat-label>
+                            <mat-select [disableOptionCentering]="true" formControlName="estado">
+                                <mat-option value="Nuevo">Nuevo</mat-option>
+                                <mat-option value="Como nuevo">Como nuevo</mat-option>
+                                <mat-option value="Usado">Usado</mat-option>
+                                <mat-option value="Muy usado">Muy usado</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </p>
+
+                    <p>
+                        <mat-form-field>
+                            <input type="number" ngModel number matInput placeholder="Precio" formControlName="precio"
+                                min="0.00" max="10000.00" step="0.01" formControlName="precio">
+                        </mat-form-field>
+                        <br />
+                    </p>
+
+                    <p>
+                        <mat-form-field>
+                            <input type="number" matInput placeholder="Stock" formControlName="stock" min="1"
+                                max="10000" formControlName="stock">
+                        </mat-form-field>
+                        <br />
+                    </p>
+
+                    <div class="btnAplicar">
+                        <button type="submit" mat-button>Aplicar</button>
+                    </div>
+                </form>
+            </mat-card-content>
+        </mat-card>
+        <div class="product-container-filtros">
+            <div *ngFor="let producto of productos; index as i;" class="card">
+                <div class="title">{{ producto.nombre }}</div>
+                <div class="image">
+                    <a [routerLink]="['/producto', producto.id]"><img [src]="producto.imagen" /></a>
+                </div>
+                <div class="text" *ngIf="producto.descuento <= 0">
+                    {{ producto.precio | currency:'EUR' }}
+                </div>
+                <div class="text" *ngIf="producto.descuento > 0">
+                    <span class="precioTachado">{{ producto.precio | currency:'EUR' }} </span>
+                    <span class="precio">{{ producto.precio - producto.descuento | currency:'EUR' }}</span>
+                </div>
+                <button class="fav-button" (click)="addProductoFavorito(producto.id)">
+                    <mat-icon>favorite</mat-icon>
+                </button>
+                <button class="cart-button">
+                    <mat-icon>add_shopping_cart</mat-icon>
+                </button>
+            </div>
+        </div>
+    </div>
 </section>
 
 <div class="centrado" *ngIf="this.productos != undefined && this.productos.length > 0">
-    <mat-paginator #paginator [length]="totalElements" [pageSize]="size" 
-        (page)="onPageChange($event)"
+    <mat-paginator #paginator [length]="totalElements" [pageSize]="size" (page)="onPageChange($event)"
         [showFirstLastButtons]="true" [hidePageSize]="true">
     </mat-paginator>
 </div>

@@ -111,7 +111,7 @@ h2 {
 }
 
 .mat-form-field-label {
-    color:#ffffff !important;
+    color: #ffffff !important;
 }
 
 .button {
@@ -121,23 +121,24 @@ h2 {
     flex-wrap: wrap;
     width: 100%;
     column-gap: 30px;
-  }
-  
-  .editarBtn, .guardarBtn {
+}
+
+.editarBtn,
+.guardarBtn {
     border: 2px solid black;
     margin-top: 20px;
     font-weight: 800;
     width: 40%;
-  }
+}
 
-  .editarBtn {
+.editarBtn {
     background-color: rgb(0, 87, 199);
-  }
+}
 
-  .guardarBtn {
+.guardarBtn {
     background-color: rgb(0, 198, 53);
-  }
+}
 
-  .direccion ::ng-deep .mat-form-field-label{
-    color:#ffffff !important;
+.direccion ::ng-deep .mat-form-field-label {
+    color: #ffffff !important;
 }
