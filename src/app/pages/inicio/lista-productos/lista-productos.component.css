@@ -101,10 +101,15 @@
 }
 
 .card-filtro {
+  position: fixed;
+  bottom: 100;
+  left: 0;
   max-width: 200px;
   height: 450px;
   background-color: #4a2985;
   color: white !important;
+  margin-left: 50px;
+  margin-right: 10px;
 }
 
 .container-filtros ::ng-deep .mat-form-field-label, ::ng-deep .mat-select-value-text {
@@ -129,6 +134,15 @@
   align-items: center;
   justify-content: center;
   border-radius: 10px;
+}
+
+.btnLimpiarFiltros {
+  background-color: #7e5abc;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  margin-top: 20px;
 }
 
 .align-center {

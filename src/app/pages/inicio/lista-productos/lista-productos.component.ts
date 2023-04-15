@@ -115,21 +115,51 @@ export class ListaProductosComponent implements OnInit {
   }
 
   onSubmitFiltros(): void {
-    this.formFiltros.controls['categoria'].setValue(3);
+    if (this.formFiltros.valid) {
+      if (this.formFiltros.controls['nombre'].value != undefined && this.formFiltros.controls['nombre'] != null && this.formFiltros.controls['nombre'].value.length > 0) {
+        ProductoService.filtros.nombre = this.formFiltros.controls['nombre'].value;
+      } else {
+        ProductoService.filtros.nombre = undefined;
+      }
 
+      if (this.formFiltros.controls['estado'].value != undefined && this.formFiltros.controls['estado'] != null && this.formFiltros.controls['estado'].value.length > 0) {
+        ProductoService.filtros.estado = this.formFiltros.controls['estado'].value;
+      } else {
+        ProductoService.filtros.estado = undefined;
+      }
+      if (this.formFiltros.controls['stock'].value != undefined && this.formFiltros.controls['stock'] != null && this.formFiltros.controls['stock'].value > 0) {
+        ProductoService.filtros.stock = this.formFiltros.controls['stock'].value;
+      } else {
+        ProductoService.filtros.stock = undefined;
+      }
+
+      if (this.formFiltros.controls['precio'].value != undefined && this.formFiltros.controls['precio'] != null && this.formFiltros.controls['precio'].value > 0) {
+        ProductoService.filtros.precio = this.formFiltros.controls['precio'].value;
+      } else {
+        ProductoService.filtros.precio = undefined;
+      }
+
+      this.getProductosPorFiltro();
+    }
   }
 
   rellenarCamposFiltros(): void {
-    // if (ProductoService.filtros.categoria != undefined && this.categorias != undefined) {
-    //   this.categorias.forEach(cat => {
-    //     if (cat.nombre === ProductoService.filtros.categoria) {
-    //       this.formFiltros.controls['categoria'].setValue(cat.id);
-    //       console.log(this.formFiltros.controls['categoria'].value);
-    //     }
-    //   });
-    // }
     if (ProductoService.filtros.nombre != undefined) {
         this.formFiltros.controls['nombre'].setValue(ProductoService.filtros.nombre);  
     }
+  }
+
+  limpiarFiltros(): void {
+    this.formFiltros.controls['nombre'].setValue('');
+    this.formFiltros.controls['estado'].setValue('');
+    this.formFiltros.controls['stock'].setValue('');
+    this.formFiltros.controls['precio'].setValue('');
+    ProductoService.filtros.nombre = undefined;
+    ProductoService.filtros.categoria = undefined;
+    ProductoService.filtros.estado = undefined;
+    ProductoService.filtros.stock = undefined;
+    ProductoService.filtros.precio = undefined;
+
+    this.getProductos();
   }
 }

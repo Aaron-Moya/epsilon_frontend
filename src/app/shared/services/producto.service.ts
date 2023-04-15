@@ -32,10 +32,17 @@ export class ProductoService {
   obtenerProductosPorFiltro(page: number, size: number/*, filtro: FiltroCategoria*/): any {
     let urlExtra = `${"?page=" + page + "&size=" + size}`;
 
-    if (ProductoService.filtros.nombre != undefined)
+    if (ProductoService.filtros.nombre != undefined && ProductoService.filtros.nombre != null)
       urlExtra += `${"&" + 'nombre' + "=" + ProductoService.filtros.nombre}`;
-    if (ProductoService.filtros.categoria != undefined)
+    if (ProductoService.filtros.categoria != undefined && ProductoService.filtros.categoria != null)
       urlExtra += `${"&" + 'categoria' + "=" + ProductoService.filtros.categoria}`;
+    if (ProductoService.filtros.estado != undefined && ProductoService.filtros.estado != null)
+      urlExtra += `${"&" + 'estado' + "=" + ProductoService.filtros.estado}`;
+    if (ProductoService.filtros.stock != undefined  && ProductoService.filtros.stock != null)
+      urlExtra += `${"&" + 'stock' + "=" + ProductoService.filtros.stock}`;
+    if (ProductoService.filtros.precio != undefined  && ProductoService.filtros.precio != null)
+      urlExtra += `${"&" + 'precio' + "=" + ProductoService.filtros.precio}`;
+    
 
     return this.httpClient.get<Page<Productos>>(`${this.baseURL + "/filtro" + urlExtra}`);
   };
@@ -53,10 +60,7 @@ export class ProductoService {
   }
 
   obtenerProductosDeUsuario(page: number, size: number, idUsuario: number): Observable<Productos[]> {
-    const headers: HttpHeaders = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`);
-    return this.httpClient.get<Productos[]>(`${this.baseURL + "/usuario" + "?page=" + page + "&idUsuario=" + idUsuario + "&size=" + size}`, {
-      headers: headers
-    });
+    return this.httpClient.get<Productos[]>(`${this.baseURL + "/usuario" + "?page=" + page + "&idUsuario=" + idUsuario + "&size=" + size}`, {});
   }
 
   addProductoFavorito(idUsuario: number, idProducto: number): Observable<Object> {
