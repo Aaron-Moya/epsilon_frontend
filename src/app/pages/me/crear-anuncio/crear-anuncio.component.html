@@ -4,7 +4,7 @@
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
             <p>
                 <mat-form-field>
-                    <input type="text" matInput placeholder="Nombre del producto" formControlName="nombre" required>
+                    <input type="text" matInput placeholder="Nombre del producto" formControlName="nombre" required maxlength="30">
                 </mat-form-field>
                 <br/>
                 <span *ngIf="this.form.get('nombre')?.errors?.['minlength']" style="color: red;">
