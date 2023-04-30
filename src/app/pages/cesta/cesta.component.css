@@ -1,3 +1,12 @@
+.cesta-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: right;
+    gap: 100px;
+    margin-left: 25%;
+}
+
 .container {
     display: flex;
     flex-direction: column;
@@ -11,6 +20,10 @@ h2 {
     color: white;
     font-size: 2rem;
     font-style: italic;
+}
+
+.texto-cesta {
+    text-align: center;
 }
 
 .datos {
@@ -59,10 +72,10 @@ a img {
     text-align: left;
 }
 
-mat-card:hover {
+/* mat-card:hover {
     transform: scale(1.1);
     transition: 1s ease;
-}
+} */
 
 a:hover img {
     transform: scale(1.2);
@@ -92,6 +105,45 @@ mat-card-content {
 
 mat-card-content p {
     width: 100%;
+}
+
+.container-footer {
+    display: flex;
+    flex-direction: row;
+    margin-top: 40px;
+}
+
+.cantidad-container {
+    display: flex;
+    flex-direction: row;
+    margin-top: 15px;
+}
+
+.suma {
+    color: rgb(0, 153, 255);
+    font-size: 30px;
+    font-weight: 500;
+    margin-top: 3px;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+.cantidad {
+    text-align: center;
+    border: 5px solid black;
+    border-radius: 12px;
+    background-color: #7c46dd;
+    color: white;
+    font-weight: bold;
+}
+
+.resta {
+    color: rgb(255, 55, 0);
+    font-size: 30px;
+    font-weight: 500;
+    margin-top: 3px;
+    margin-left: 7px;
+    cursor: pointer;
 }
 
 .botones {
@@ -149,7 +201,14 @@ a {
 }
 
 .precioTachado {
-    text-decoration:line-through;
+    text-decoration: line-through;
     color: rgba(255, 0, 0, 0.685);
     margin-right: 5px;
-  }
+}
+
+.container-total {
+    margin-right: 4rem;
+    margin-top: 7rem;
+    max-height: 150px;
+    width: 350px;
+}

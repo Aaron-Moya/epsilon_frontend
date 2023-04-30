@@ -4,6 +4,7 @@ import { PageEvent } from '@angular/material/paginator';
 import { Categorias } from 'src/app/shared/interfaces/categorias';
 import { Productos } from 'src/app/shared/interfaces/productos';
 import { CategoriaService } from 'src/app/shared/services/categoria.service';
+import { CestaService } from 'src/app/shared/services/cesta.service';
 import { ProductoService } from 'src/app/shared/services/producto.service';
 import Swal from 'sweetalert2';
 
@@ -31,7 +32,7 @@ export class ListaProductosComponent implements OnInit {
     precio: new FormControl('')
   });
 
-  constructor(private productoService: ProductoService, private categoriaService: CategoriaService) {
+  constructor(private productoService: ProductoService, private categoriaService: CategoriaService, private cestaService: CestaService) {
     this.categoriaService.obtenerCategorias().subscribe(categorias => {
       this.categorias = categorias;
     });
@@ -109,6 +110,39 @@ export class ListaProductosComponent implements OnInit {
         Swal.fire({
           icon: 'error',
           title: '¡Error al añadir el producto a favoritos!',
+        });
+      });
+    }
+  }
+
+  addProductoCesta(idProducto: number): void {
+    const idUsuario = localStorage.getItem('idUsuarioLogueado');
+    let error = false;
+
+    if (idUsuario != null) {
+      this.productos.forEach(prod => {
+        if (prod.id == idProducto && prod.usuarios.id === parseInt(idUsuario)) {
+          Swal.fire({
+            icon: 'info',
+            title: '¡No puedes añadir tu propio producto a la cesta!',
+          });
+          error = true;
+        }
+      })
+    }
+
+    if (idUsuario != null && !error) {
+      this.cestaService.addProductoCesta(parseInt(idUsuario), idProducto).subscribe(data => {
+        Swal.fire({
+          icon: 'info',
+          title: '¡Producto añadido a la cesta!',
+        });
+        console.log(data);
+      }, err => {
+        console.log(err);
+        Swal.fire({
+          icon: 'error',
+          title: '¡Error al añadir el producto a la cesta!',
         });
       });
     }
