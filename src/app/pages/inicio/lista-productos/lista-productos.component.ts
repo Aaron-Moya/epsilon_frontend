@@ -128,6 +128,18 @@ export class ListaProductosComponent implements OnInit {
           });
           error = true;
         }
+      });
+    }
+
+    if (!error) {
+      this.productos.forEach(prod => {
+        if (prod.id == idProducto && prod.stock <= 0) {
+          Swal.fire({
+            icon: 'info',
+            title: '¡No puedes añadir un producto sin stock a la cesta!',
+          });
+          error = true;
+        }
       })
     }
 

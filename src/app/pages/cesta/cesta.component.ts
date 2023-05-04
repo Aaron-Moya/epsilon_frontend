@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ProductoCantidadDTO } from 'src/app/shared/interfaces/ProductoCantidadDTO';
 import { Cestas } from 'src/app/shared/interfaces/cestas';
 import { Productos } from 'src/app/shared/interfaces/productos';
 import { CestaService } from 'src/app/shared/services/cesta.service';
 import { ProductoService } from 'src/app/shared/services/producto.service';
 import { UsuarioService } from 'src/app/shared/services/usuario.service';
+import { VentaService } from 'src/app/shared/services/venta.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -20,7 +23,7 @@ export class CestaComponent implements OnInit {
   total: number = 0;
   subtotal: number = 0;
 
-  constructor(private cestaService: CestaService, private productoService: ProductoService, private usuarioService: UsuarioService) { 
+  constructor(private cestaService: CestaService, private productoService: ProductoService, private usuarioService: UsuarioService, private ventaService: VentaService, private router: Router) { 
     this.idUsuario = localStorage.getItem('idUsuarioLogueado');
   }
 
@@ -140,9 +143,30 @@ export class CestaComponent implements OnInit {
         }
       });
     });
-    /*this.total = this.productos.map(prod => prod.precio).reduce((total, item) => total + item);
-    this.subtotal = (this.productos.map(prod => prod.precio).reduce((total, item) => total + item))
-                      - (this.productos.map(prod => prod.descuento).reduce((total, item) => total + item));*/
+  }
 
+  hacerPedido(): void {
+      let productosCantidadDTO: ProductoCantidadDTO[] = [];
+      this.cestas.forEach(cesta => {
+        let productoCantidadDTO: ProductoCantidadDTO = new ProductoCantidadDTO;
+        productoCantidadDTO.id = cesta.idProducto;
+        productoCantidadDTO.cantidad = cesta.cantidad;
+        productosCantidadDTO.push(productoCantidadDTO);
+      });
+
+      this.ventaService.crearVenta(productosCantidadDTO, this.idUsuario, this.subtotal).subscribe(data => {
+        this.router.navigate(['/']);
+        Swal.fire({
+          icon: 'success',
+          title: '¡Se ha realizado correctamente el pedido!',
+        });
+        console.log(data);
+      }, error => {
+        Swal.fire({
+          icon: 'error',
+          title: '¡Ha habido un error al realizar el pedido!',
+        });
+        console.log(error);
+      });
   }
 }

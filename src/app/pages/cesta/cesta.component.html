@@ -19,13 +19,6 @@
                         <span class="precio">{{ producto.precio - producto.descuento | currency:'EUR' }}</span>
                     </div>
                 </div>
-                <!-- 
-                    Hacer el formulario de cantidad para que simplemente se pueda quitar
-                    o subir la cantidad con botones + y -, por lo que es readonly la cantidad
-                    La cantidad no puede ser <= 0 ni > que el stock
-                 -->
-    
-                
             </mat-card-content>
             <div class="container-footer">
                 <div class="cantidad-container">
@@ -39,17 +32,13 @@
                     <mat-icon>delete</mat-icon>
                 </button>
             </div>
-    <!-- 
-            <div class="botones">
-                
-            </div> -->
         </mat-card>
     </div>
     
-    <mat-card class="container-total">
+    <mat-card class="container-total" *ngIf="cestas.length > 0">
         <p>TOTAL SIN DESCUENTO: <span class="dinero">{{ total }} €</span></p>
         <p>TOTAL A PAGAR: <span class="dinero">{{ subtotal }} €</span></p>
-        <button class="btnPedido">Realizar pedido</button>
+        <button class="btnPedido" (click)="hacerPedido()">Realizar pedido</button>
     </mat-card>
 </div>
 
@@ -58,16 +47,5 @@
     <h2>Tienes que <a [href]="['/login']">iniciar sesión</a> para ver tus productos favoritos</h2>
 </div>
 <div class="container" *ngIf="idUsuario != null && productos.length <= 0">
-    <h2>No tienes ningún producto en favoritos :(</h2>
+    <h2>No tienes ningún producto en la cesta :(</h2>
 </div>
-
-<!-- <div class="container">
-    <mat-card *ngFor="let producto of productos; index as i;" class="card">
-        <mat-card-title>{{ producto.nombre }}</mat-card-title>
-        <mat-card-content>
-            <p>
-                {{ producto.descripcion }}
-            </p>
-        </mat-card-content>
-    </mat-card>
-</div> -->

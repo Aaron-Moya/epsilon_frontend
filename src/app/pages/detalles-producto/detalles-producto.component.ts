@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Productos } from 'src/app/shared/interfaces/productos';
 import { Usuarios } from 'src/app/shared/interfaces/usuarios';
+import { CestaService } from 'src/app/shared/services/cesta.service';
 import { ProductoService } from 'src/app/shared/services/producto.service';
 import { UsuarioService } from 'src/app/shared/services/usuario.service';
 import Swal from 'sweetalert2';
@@ -15,7 +16,7 @@ export class DetallesProductoComponent implements OnInit {
 
   producto: Productos = new Productos();
 
-  constructor(private productoService: ProductoService, private activatedRoute: ActivatedRoute) {}
+  constructor(private productoService: ProductoService, private cestaService: CestaService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
@@ -29,7 +30,7 @@ export class DetallesProductoComponent implements OnInit {
   addProductoFavorito(idProducto: number): void {
     const idUsuario = localStorage.getItem('idUsuarioLogueado');
     let error = false;
-    
+
     if (idUsuario != null) {
       if (this.producto.usuarios.id == parseInt(idUsuario)) {
         Swal.fire({
@@ -55,6 +56,47 @@ export class DetallesProductoComponent implements OnInit {
         });
       });
     }
-}
+  }
+
+  addProductoCesta(idProducto: number): void {
+    const idUsuario = localStorage.getItem('idUsuarioLogueado');
+    let error = false;
+
+    if (idUsuario != null) {
+        if (this.producto.usuarios.id === parseInt(idUsuario)) {
+          Swal.fire({
+            icon: 'info',
+            title: '¡No puedes añadir tu propio producto a la cesta!',
+          });
+          error = true;
+        }
+    }
+
+    if (!error) {
+      if (this.producto.stock <= 0) {
+        Swal.fire({
+          icon: 'info',
+          title: '¡No puedes añadir un producto sin stock a la cesta!',
+        });
+        error = true;
+      }
+    }
+
+    if (idUsuario != null && !error) {
+      this.cestaService.addProductoCesta(parseInt(idUsuario), idProducto).subscribe(data => {
+        Swal.fire({
+          icon: 'info',
+          title: '¡Producto añadido a la cesta!',
+        });
+        console.log(data);
+      }, err => {
+        console.log(err);
+        Swal.fire({
+          icon: 'error',
+          title: '¡Error al añadir el producto a la cesta!',
+        });
+      });
+    }
+  }
 
 }
