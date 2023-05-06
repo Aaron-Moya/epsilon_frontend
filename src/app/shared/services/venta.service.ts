@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ProductoCantidadDTO } from '../interfaces/ProductoCantidadDTO';
+import { Ventas } from '../interfaces/ventas';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,12 @@ export class VentaService {
 
   constructor(private httpClient: HttpClient) { }
 
+  obtenerPedidos(idUsuario: number): Observable<Ventas[]> {
+    const headers: HttpHeaders = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`);
+    return this.httpClient.get<Ventas[]>(`${this.baseURL + "/comprador/" + idUsuario}`, {
+      headers: headers
+    });
+  }
   crearVenta(productosCantidadDTOs: ProductoCantidadDTO[], idUsuarioComprador: number, /*idUsuarioVendedor: number,*/ total: number): Observable<Object> {
     const params = {
         idUsuarioComprador: idUsuarioComprador,

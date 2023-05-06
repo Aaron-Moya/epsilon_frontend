@@ -6,6 +6,12 @@
                 TABLERO
             </a>
         </li>
+        <li (click)="seleccionarPerfil()">
+            <a [ngClass]="{ active: perfilSeleccionado }">
+                <mat-icon class="icon-display">account_box</mat-icon>
+                PERFIL
+            </a>
+        </li>
         <li (click)="seleccionarBiblioteca()">
             <a [ngClass]="{ active: bibliotecaSeleccionado }">
                 <mat-icon class="icon-display">videogame_asset</mat-icon>
@@ -16,12 +22,6 @@
             <a [ngClass]="{ active: pedidosSeleccionado }">
                 <mat-icon class="icon-display">file_copy</mat-icon>
                 PEDIDOS
-            </a>
-        </li>
-        <li (click)="seleccionarPerfil()">
-            <a [ngClass]="{ active: perfilSeleccionado }">
-                <mat-icon class="icon-display">account_box</mat-icon>
-                PERFIL
             </a>
         </li>
         <li (click)="seleccionarVentas()">
@@ -45,6 +45,10 @@
     </ul>
     
     <div class="contenido">
+        <tablero *ngIf="tableroSeleccionado"></tablero>
+        <biblioteca *ngIf="bibliotecaSeleccionado"></biblioteca>
+        <pedidos *ngIf="pedidosSeleccionado"></pedidos>
+        <ventas *ngIf="ventasSeleccionado"></ventas>
         <crear-anuncio *ngIf="crearAnuncioSeleccionado"></crear-anuncio>
         <mis-anuncios *ngIf="misAnunciosSeleccionado"></mis-anuncios>
         <perfil *ngIf="perfilSeleccionado"></perfil>
