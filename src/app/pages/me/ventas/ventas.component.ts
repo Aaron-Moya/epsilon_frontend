@@ -22,7 +22,6 @@ export class VentasComponent implements OnInit {
         this.ventas = data;
         this.dataSource = new MatTableDataSource(data);
         this.dataSource.paginator = this.paginator;
-
       });
     }
    }

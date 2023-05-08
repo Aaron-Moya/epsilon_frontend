@@ -1,4 +1,4 @@
-<div class="contenedor">
+<div class="contenedor" *ngIf="ventas.length > 0">
     <h2>VENTAS REALIZADAS</h2>
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
@@ -47,4 +47,7 @@
       </table>
 
       <mat-paginator [pageSizeOptions]="[10]" #paginator [showFirstLastButtons]="true" [hidePageSize]="true"></mat-paginator>
+</div>
+<div class="listaVacia" *ngIf="ventas.length <= 0">
+  <h2>Todavía no has realizado ninguna venta :(</h2>
 </div>

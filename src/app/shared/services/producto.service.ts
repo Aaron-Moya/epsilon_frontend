@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Productos } from '../interfaces/productos';
+import { ProductoBibliotecaDTO } from '../interfaces/ProductoBibliotecaDTO';
 import { FiltroCategoria } from '../interfaces/filtroCategoria';
 import { Page } from '../interfaces/page';
 
@@ -61,6 +62,14 @@ export class ProductoService {
 
   obtenerProductosDeUsuario(page: number, size: number, idUsuario: number): Observable<Productos[]> {
     return this.httpClient.get<Productos[]>(`${this.baseURL + "/usuario" + "?page=" + page + "&idUsuario=" + idUsuario + "&size=" + size}`, {});
+  }
+
+  obtenerProductosBiblioteca(idUsuario: number): Observable<ProductoBibliotecaDTO[]> {
+    const headers: HttpHeaders = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`);
+    return this.httpClient.get<ProductoBibliotecaDTO[]>(`${this.baseURL + "/biblioteca"}`, {
+      params: { idUsuario: idUsuario },
+      headers: headers
+    });
   }
 
   addProductoFavorito(idUsuario: number, idProducto: number): Observable<Object> {

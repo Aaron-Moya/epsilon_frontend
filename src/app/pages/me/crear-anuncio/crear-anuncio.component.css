@@ -77,3 +77,7 @@ mat-card-title {
     font-weight: 800;
     width: 100%;
   }
+
+  ::ng-deep .mat-select-value-text, ::ng-deep .mat-select-min-line {
+    color: black !important;
+  }

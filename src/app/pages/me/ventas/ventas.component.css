@@ -29,3 +29,13 @@ th {
 tr.mat-row:nth-child(even) {
     background-color: rgb(230, 230, 230);
 }
+
+.listaVacia {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.listaVacia h2 {
+    font-style: italic;
+    font-weight: 500;
+}
