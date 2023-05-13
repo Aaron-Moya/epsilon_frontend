@@ -11,30 +11,30 @@ import { VentaService } from 'src/app/shared/services/venta.service';
 })
 export class PedidosComponent implements OnInit {
 
-  pedidos: Ventas[] = [];
+  @ViewChild('paginador') paginator: MatPaginator;
+
+  pedidos: Ventas[];
   columnas: string[] = ['id', 'fechaVenta', 'totalProductos', 'total'];
   dataSource!: MatTableDataSource<Ventas>;
-  
+
   constructor(private ventaService: VentaService) {
     const idUsuario = localStorage.getItem('idUsuarioLogueado');
     if (idUsuario != null) {
-      this.ventaService.obtenerPedidos(parseInt(idUsuario)).subscribe(data => {
-        this.pedidos = data;
-        this.dataSource = new MatTableDataSource(data);
-        this.dataSource.paginator = this.paginator;
-
-      });
+      this.ventaService.obtenerPedidos(parseInt(idUsuario))
+        .subscribe(data => {
+          this.pedidos = data;
+          this.dataSource = new MatTableDataSource(this.pedidos);
+        });
     }
-   }
+  }
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  ngOnInit(): void {
+
+  }
 
   ngAfterViewInit() {
-  }
-  
-  ngOnInit(): void {
-    
-    
+    this.dataSource.paginator = this.paginator;
+
   }
 
 }

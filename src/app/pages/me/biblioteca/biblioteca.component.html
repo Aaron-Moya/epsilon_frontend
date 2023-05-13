@@ -7,15 +7,16 @@
             </a>
             <div class="datos">
                 <p class="nombre">{{ producto.nombre }}</p>
+                <p class="fechaPublicacion">Publicado el {{ producto.fechaCreacion }}</p>
                 <p class="estado">Estado: {{ producto.estado }}</p>
                 <p class="stock">Cantidad comprada: {{ producto.cantidad }}</p>
-                <div class="precio" *ngIf="producto.descuento <= 0">
-                    {{ producto.precio | currency:'EUR' }} 
+                <!-- <div class="precio" *ngIf="producto.descuento <= 0">
+                    {{ producto.precio | currency:'EUR' }}
                 </div>
                 <div class="precio" *ngIf="producto.descuento > 0">
                     <span class="precioTachado">{{ producto.precio | currency:'EUR' }} </span>
                     <span class="precio">{{ producto.precio - producto.descuento | currency:'EUR' }}</span>
-                </div>
+                </div> -->
             </div>
 
         </mat-card-content>

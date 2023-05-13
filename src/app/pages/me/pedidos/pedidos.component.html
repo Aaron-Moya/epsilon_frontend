@@ -6,28 +6,28 @@
           <th mat-header-cell *matHeaderCellDef> ID </th>
           <td mat-cell *matCellDef="let pedido"> {{pedido.id}} </td>
         </ng-container>
-      
+
         <ng-container matColumnDef="fechaVenta">
           <th mat-header-cell *matHeaderCellDef> Fecha de la venta </th>
           <td mat-cell *matCellDef="let pedido"> {{pedido.fechaVenta}} </td>
         </ng-container>
-      
+
         <ng-container matColumnDef="totalProductos">
           <th mat-header-cell *matHeaderCellDef> Productos comprados </th>
           <td mat-cell *matCellDef="let pedido"> {{pedido.totalProductos}} </td>
         </ng-container>
-    
+
         <ng-container matColumnDef="total">
             <th mat-header-cell *matHeaderCellDef> Total </th>
             <td mat-cell *matCellDef="let pedido"> {{pedido.total}} € </td>
           </ng-container>
-      
+
         <tr mat-header-row *matHeaderRowDef="columnas"></tr>
         <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
       </table>
 
-      <mat-paginator [pageSizeOptions]="[10]" #paginator [showFirstLastButtons]="true" [hidePageSize]="true"></mat-paginator>
+      <mat-paginator #paginador [pageSizeOptions]="[5]" [showFirstLastButtons]="true" [hidePageSize]="true"></mat-paginator>
 </div>
-<div class="listaVacia" *ngIf="pedidos.length <= 0">
+<div class="listaVacia" *ngIf="pedidos === undefined || pedidos.length === 0">
   <h2>Todavía no has realizado ningún pedido :(</h2>
 </div>
