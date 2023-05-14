@@ -23,7 +23,7 @@ export class CestaComponent implements OnInit {
   total: number = 0;
   subtotal: number = 0;
 
-  constructor(private cestaService: CestaService, private productoService: ProductoService, private usuarioService: UsuarioService, private ventaService: VentaService, private router: Router) { 
+  constructor(private cestaService: CestaService, private productoService: ProductoService, private usuarioService: UsuarioService, private ventaService: VentaService, private router: Router) {
     this.idUsuario = localStorage.getItem('idUsuarioLogueado');
   }
 
@@ -41,7 +41,7 @@ export class CestaComponent implements OnInit {
       });
     }
 
-    
+
   }
 
   getCantidadCesta(idProducto: number) : number {
@@ -160,7 +160,6 @@ export class CestaComponent implements OnInit {
           icon: 'success',
           title: '¡Se ha realizado correctamente el pedido!',
         });
-        console.log(data);
       }, error => {
         Swal.fire({
           icon: 'error',

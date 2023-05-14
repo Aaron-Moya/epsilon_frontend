@@ -3,7 +3,6 @@ import { PageEvent } from '@angular/material/paginator';
 import { Router } from '@angular/router';
 import { Productos } from 'src/app/shared/interfaces/productos';
 import { ProductoService } from 'src/app/shared/services/producto.service';
-import { UsuarioService } from 'src/app/shared/services/usuario.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -13,7 +12,7 @@ import Swal from 'sweetalert2';
 })
 export class MisAnunciosComponent implements OnInit {
 
-  productos!: Productos[];
+  productos: Productos[] = [];
   idUsuario = localStorage.getItem('idUsuarioLogueado');
   page = 0;
   size = 3;
@@ -44,18 +43,28 @@ export class MisAnunciosComponent implements OnInit {
   }
 
   eliminarProducto(idProducto: number) : void {
-    this.productoService.deleteProducto(idProducto).subscribe(data => {
-      Swal.fire({
-        icon: 'success',
-        title: '¡Anuncio borrado correctamente!',
-      });
-      this.getProductosUsuario();
-    }, err => {
-      Swal.fire({
-        icon: 'error',
-        title: '¡Error al borrar el anuncio!',
-      });
-      console.log(err);
+    Swal.fire({
+      icon: 'warning',
+      title: '¿Estás seguro de querer eliminar el anuncio?',
+      showDenyButton: true,
+      confirmButtonText: 'Si',
+      denyButtonText: `No`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.productoService.deleteProducto(idProducto).subscribe(data => {
+          Swal.fire({
+            icon: 'success',
+            title: '¡Anuncio borrado correctamente!',
+          });
+          this.getProductosUsuario();
+        }, err => {
+          Swal.fire({
+            icon: 'error',
+            title: '¡Error al borrar el anuncio!',
+          });
+          console.log(err);
+        });
+      }
     });
   }
 }

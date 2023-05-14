@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { FiltroCategoria } from '../../interfaces/filtroCategoria';
 import { Usuarios } from '../../interfaces/usuarios';
@@ -51,6 +51,10 @@ export class HeaderComponent implements OnInit {
     };
     if (opcion == "cerrarSesion") this.cerrarSesion();
     else {
+      this.router.routeReuseStrategy.shouldReuseRoute = function () {
+        return false;
+      }
+      this.router.onSameUrlNavigation = 'reload';
       this.router.navigate(['/me'], extras);
     }
 

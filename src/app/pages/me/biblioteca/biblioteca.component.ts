@@ -10,9 +10,9 @@ import { UsuarioService } from 'src/app/shared/services/usuario.service';
 })
 export class BibliotecaComponent implements OnInit {
 
-  productos!: ProductoBibliotecaDTO[];
+  productos: ProductoBibliotecaDTO[] = [];
   idUsuario!: any;
-  constructor(private productoService: ProductoService, private usuarioService: UsuarioService) { 
+  constructor(private productoService: ProductoService, private usuarioService: UsuarioService) {
     this.idUsuario = localStorage.getItem('idUsuarioLogueado');
 
   }

@@ -13,7 +13,7 @@ export class FavoritosComponent implements OnInit {
 
   productos!: Productos[];
   idUsuario!: any;
-  constructor(private productoService: ProductoService, private usuarioService: UsuarioService) { 
+  constructor(private productoService: ProductoService, private usuarioService: UsuarioService) {
     this.idUsuario = localStorage.getItem('idUsuarioLogueado');
 
   }
@@ -39,7 +39,6 @@ export class FavoritosComponent implements OnInit {
             this.productos = data;
             this.productos.sort((a,b) => a.nombre.localeCompare(b.nombre));
           });
-          console.log(data);
         }, err => {
           console.log(err);
           Swal.fire({

@@ -104,7 +104,6 @@ export class ListaProductosComponent implements OnInit {
           icon: 'info',
           title: '¡Producto añadido a favoritos!',
         });
-        console.log(data);
       }, err => {
         console.log(err);
         Swal.fire({
@@ -149,7 +148,6 @@ export class ListaProductosComponent implements OnInit {
           icon: 'info',
           title: '¡Producto añadido a la cesta!',
         });
-        console.log(data);
       }, err => {
         console.log(err);
         Swal.fire({
@@ -191,7 +189,7 @@ export class ListaProductosComponent implements OnInit {
 
   rellenarCamposFiltros(): void {
     if (ProductoService.filtros.nombre != undefined) {
-        this.formFiltros.controls['nombre'].setValue(ProductoService.filtros.nombre);  
+        this.formFiltros.controls['nombre'].setValue(ProductoService.filtros.nombre);
     }
   }
 

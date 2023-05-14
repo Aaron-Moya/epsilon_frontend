@@ -70,7 +70,6 @@ export class CrearAnuncioComponent implements OnInit {
         producto.estado = this.form.get<string>('estado')?.value;
         producto.categorias = this.categorias.find(c => c.id == this.form.value.categoria) as Categorias;
         producto.usuarios = this.usuario;
-        console.log(this.usuario);
 
         const json = JSON.stringify(producto);
 

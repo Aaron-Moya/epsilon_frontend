@@ -142,3 +142,7 @@ h2 {
 .direccion ::ng-deep .mat-form-field-label {
     color: #ffffff !important;
 }
+
+.direccion ::ng-deep .mat-input-element:disabled {
+  color: #c5c2c2 !important;
+}

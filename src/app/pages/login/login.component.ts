@@ -31,9 +31,7 @@ export class LoginComponent implements OnInit {
       this.usuarioService.obtenerUsuarioLogin(email, password)
       .pipe(catchError(() => of(null)))
         .subscribe(dato => {
-          console.log(dato);
           if (dato != null) {
-            console.log(dato);
             this.usuarioLogueadoService.updateUsuarioLogueado(dato);
             this.router.navigate(['/']);
           }
@@ -44,7 +42,7 @@ export class LoginComponent implements OnInit {
             })
           }
         });
-    } 
+    }
   }
 }
 

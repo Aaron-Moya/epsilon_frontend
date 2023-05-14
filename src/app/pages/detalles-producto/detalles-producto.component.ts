@@ -47,7 +47,6 @@ export class DetallesProductoComponent implements OnInit {
           icon: 'info',
           title: '¡Producto añadido a favoritos!',
         });
-        console.log(data);
       }, err => {
         console.log(err);
         Swal.fire({
@@ -88,7 +87,6 @@ export class DetallesProductoComponent implements OnInit {
           icon: 'info',
           title: '¡Producto añadido a la cesta!',
         });
-        console.log(data);
       }, err => {
         console.log(err);
         Swal.fire({

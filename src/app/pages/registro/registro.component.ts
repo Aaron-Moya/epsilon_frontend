@@ -76,7 +76,8 @@ export class RegistroComponent {
       Swal.fire({
         icon: 'error',
         title: '¡Error al registrarse!',
-      })
+      });
+      console.log(err);
     });
   }
 }

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Navigation } from '@angular/router';
 import { Router } from '@angular/router';
 
 @Component({
@@ -19,13 +18,17 @@ export class MeComponent implements OnInit {
   misAnunciosSeleccionado = false;
   crearAnuncioSeleccionado = false;
 
-  constructor(private router: Router) { 
+  constructor(private router: Router) {
+    const idUsuario = localStorage.getItem('idUsuarioLogueado');
+    if (!idUsuario) this.router.navigate(['/']);
+
     const state = this.router.getCurrentNavigation()?.extras.state;
     if (state != undefined) this.opcionMenu = state['opcionMenu'];
     else this.opcionMenu = "perfil";
   }
 
   ngOnInit(): void {
+
     this.seleccionarOpcionMenu();
   }
 

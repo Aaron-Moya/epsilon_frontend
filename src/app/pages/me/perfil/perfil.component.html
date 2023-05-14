@@ -43,6 +43,7 @@
                     <mat-form-field color="accent">
                         <input type="text" matInput placeholder="Ciudad" formControlName="ciudad" maxlength="30" required>
                     </mat-form-field>
+                    <br/>
                     <span *ngIf="this.formDireccion.get('ciudad')?.errors?.['minlength']" style="color: red;">
                         La ciudad tiene que tener al menos 3 carácteres.
                     </span>

@@ -55,7 +55,7 @@ export class PerfilComponent implements OnInit {
   }
 
   abrirDialogoImagen() {
-    this.file.nativeElement.click(); 
+    this.file.nativeElement.click();
   }
 
   onFileSelected(event: Event) {
@@ -85,6 +85,7 @@ export class PerfilComponent implements OnInit {
   }
 
   desactivarCamposDireccion() : void {
+    this.editarDireccionFormulario = false;
     this.formDireccion.controls['calle'].disable();
     this.formDireccion.controls['numero'].disable();
     this.formDireccion.controls['ciudad'].disable();
@@ -98,7 +99,11 @@ export class PerfilComponent implements OnInit {
   }
 
   editarFormularioDireccion(): void {
-    this.activarCamposDireccion();
+    if (!this.editarDireccionFormulario) {
+      this.activarCamposDireccion();
+    } else {
+      this.desactivarCamposDireccion();
+    }
   }
 
   guardarDireccion(): void {
@@ -116,6 +121,7 @@ export class PerfilComponent implements OnInit {
               icon: 'success',
               title: 'Dirección creada correctamente!',
             });
+            this.desactivarCamposDireccion();
           }, err => {
             Swal.fire({
               icon: 'error',
@@ -131,6 +137,7 @@ export class PerfilComponent implements OnInit {
             icon: 'success',
             title: 'Dirección actualizada correctamente!',
           });
+          this.desactivarCamposDireccion();
         }, err => {
           Swal.fire({
             icon: 'error',
