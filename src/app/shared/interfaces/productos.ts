@@ -3,6 +3,10 @@ import { Usuarios } from "./usuarios";
 
 export class Productos {
 
+  constructor() {
+    this.usuarios = new Usuarios();
+  }
+
     id!: number;
     nombre!: string;
     descripcion!: string;

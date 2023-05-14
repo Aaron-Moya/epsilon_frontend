@@ -14,12 +14,12 @@ import { UsuarioService } from 'src/app/shared/services/usuario.service';
 export class DetallesUsuarioComponent implements OnInit {
 
   usuario: Usuarios = new Usuarios();
-  productos!: Productos[];
+  productos: Productos[] = [];
 
   page = 0;
   size = 3;
   totalElements = 0;
-  
+
   constructor(private usuarioService: UsuarioService, private productoService: ProductoService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
